@@ -1,2 +1,3 @@
 *.pyc
 *.bsv
+storage/logs/*
