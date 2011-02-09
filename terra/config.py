@@ -23,6 +23,7 @@ class Settings:
     
     autojoin = None
     token = None
+    cookie = None
     file = None
     
     def __init__(self, file='./storage/config.bsv'):
@@ -65,20 +66,15 @@ class Configure:
     
     file = './storage/config.bsv'
     
-    def __init__(self, option=None):
+    def __init__(self, file='./storage/config.bsv', option=None):
+        self.file = file
         if not os.path.exists('./storage'):
             os.mkdir('./storage', 0o755)
         self.write('Welcome to the configuration file!')
-        sys.stdout.flush()
     
-        self.data = {
-            'info': {},
-            'autojoin':[],
-            'token': None,
-            'cookie': None,
-        }
+        self.data = Settings(self.file)
         
-        if option == 'all' or not os.path.exists(self.file):
+        if option == 'all' or not self.data.info.username:
             self.run_all()
         else:
             self.menu()
@@ -89,14 +85,16 @@ class Configure:
     
     def menu(self):
         while True:
-            file = open(self.file, 'r')
-            self.data = json.loads(file.read())
-            file.close()
+            self.data.load()
             self.write('Current configuration:')
-            for key, value in self.data['info']:
-                self.write('Bot {0} = {1}'.format(key, value))
+            # Display config data!
+            inf = self.data.info
+            self.write('Bot {0} = {1}'.format('username', info.username))
+            self.write('Bot {0} = {1}'.format('password', info.password))
+            self.write('Bot {0} = {1}'.format('owner', info.owner))
+            self.write('Bot {0} = {1}'.format('trigger', info.trigger))
             self.write('Autojoin:')
-            self.write(', '.join(self.data['autojoin']))
+            self.write(', '.join(self.data.autojoin))
             self.write('')
             self.write('Choose one of the following options:')
             self.write('info - Set the bot\'s configuration information.')
@@ -128,7 +126,7 @@ class Configure:
     
     def get_info(self):
         for option in ['username', 'password', 'owner', 'trigger']:
-            self.data['info'][option] = get_input('> Bot ' + option + ': ')
+            setattr(self.data.info, option, get_input('> Bot ' + option + ': '))
     
     def get_autojoin(self):
         self.write( 'Next we need to know which channels you want your' )
@@ -141,15 +139,13 @@ class Configure:
         if aj:
             aj = aj.split(',')
             if aj:
-                self.data['autojoin'] = [ns.strip() for ns in aj if ns.strip()]
+                self.data.autojoin = [ns.strip() for ns in aj if ns.strip()]
         
-        if not self.data['autojoin']:
-            self.data['autojoin'].append('#Botdom')
+        if not self.data.autojoin:
+            self.data.autojoin.append('#Botdom')
     
     def save(self):
-        file = open(self.file, 'w')
-        file.write(export_struct(self.data))
-        file.close()
+        self.data.save()
         
         self.write( 'Configuration file saved!' )
     

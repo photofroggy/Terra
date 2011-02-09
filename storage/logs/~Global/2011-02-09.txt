@@ -129,3 +129,30 @@
 20:03:03| ** You have been disconnected * force quit (^C)
 20:03:03| ** The bot has finished running.
 20:03:03| ** Bye bye!
+20:37:25| ** Welcome to Terra version 2!
+20:37:25| ** Created by photofroggy!
+20:37:25| ** Looks like you need to set up the bot!
+20:37:25| ** Loading config file...
+20:38:01| ** Welcome to Terra version 2!
+20:38:01| ** Created by photofroggy!
+20:38:01| ** Looks like you need to set up the bot!
+20:38:01| ** Loading config file...
+20:38:25| ** Welcome to Terra version 2!
+20:38:25| ** Created by photofroggy!
+20:38:25| ** Looks like you need to set up the bot!
+20:38:25| ** Loading config file...
+20:39:06| ** Welcome to Terra version 2!
+20:39:06| ** Created by photofroggy!
+20:39:06| ** Looks like you need to set up the bot!
+20:39:06| ** Loading config file...
+20:39:16| ** ... load rules here.
+20:39:16| ** ... load extensions here.
+20:39:16| ** Ok, that's everything! Let's go!
+20:39:16| ** Retrieving authtoken...
+20:39:17| ** Got an authtoken.
+20:39:17| ** Opening a connection to dAmn.
+20:39:18| ** Connected to dAmn Server 0.3.
+20:39:18| ** Login as pfbot: ok.
+20:39:22| ** You have been disconnected * force quit (^C)
+20:39:22| ** The bot has finished running.
+20:39:22| ** Bye bye!

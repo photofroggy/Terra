@@ -58,7 +58,7 @@ class Main:
             return
         self.log('** Looks like you need to set up the bot!')
         self.log('** Loading config file...')
-        Configure(self.config_file)
+        Configure(self.config_file, 'all')
     
     def load_rules(self):
         self.log('** ... load rules here.')

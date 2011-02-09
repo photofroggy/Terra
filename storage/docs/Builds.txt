@@ -6,6 +6,10 @@
     Build 118 () Legacy
         * Bumped version to 2!
         * This is essentially a rewrite!
+        * Managed to get a basic client that connects and allows configuration.
+        ** Took around an hour!
+        ** Seriously, dAmn Viper + Reflex = awesomeness.
+        
 
     Build 117 (06122010-011554) Flux
         * Changed the dsp extension to use the TDS namespace for PROVIDER.
