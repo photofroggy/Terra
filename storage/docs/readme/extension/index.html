@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>Terra 1 - Extensions</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="../style.css" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+        <div class="wrap">
+            <ul class="topinfo">
+                <li>Version: <a href="../../../../README.html">Terra 1</a>,</li>
+                <li>Author: <a href="http://photofroggy.deviantart.com/">photofroggy</a>,</li>
+                <li>License: <a href="http://www.gnu.org/licenses/gpl.html">GNU GPL v3.0+</a></li>
+            </ul>
+            <div class="body">
+                <h1 class="top">Extension Manual</h1>
+                <ul class="nav">
+                    <li><a href="../../../../README.html">Terra 1</a> &raquo;</li>
+                    <li>Extensions</li>
+                </ul>
+                <div>
+                    <h2><a name="Introduction"></a>
+                        Introduction<em>!</em></h2>
+                    <p>
+                        You can extend the functionality of Terra by creating <em>extensions</em>! There are
+                        quite a few extensions included with Terra. Many of these extensions can be found in
+                        the folder ~/extensions/OFF. To load them as extensions, simply move them to ~/extensions
+                        and restart your bot (if it is already running), or use the command
+                        "<a href="System.html#extensions">!extensions reload</a>".
+                    </p><p>
+                        Extensions are self-contained Python files, these files contain a class, which contains
+                        the code for the extension itself. The classes contain methods to handle commands and
+                        events. This is part of what makes Terra flexible. Anyone can create an extension to do
+                        pretty much anything.
+                    </p>
+                    <h2><a name="commands"></a>
+                        Commands</h2>
+                    <p>
+                        The main thing that these pages are concerned about are commands. Commands make your bot perform
+                        pre-programmed actions, based around what you type. In order to actually use commands, you need
+                        to follow a very simple set of rules. Here, I will try to explain these simple rules.
+                    </p><p>
+                        Fear not! Commands are not difficult things to learn or use!
+                    </p>
+                    <h3><a name="command_triggers"></a>
+                        Triggers</h3>
+                    <p>
+                        When setting up your bot, you should notice that you are asked for a "trigger". A trigger
+                        is a character, or sequence of characters, which are used to tell your bot that you attempting
+                        to use a command. Terra requires that you use this trigger in front of any command you try to
+                        use.
+                    </p><p>
+                        For example, if you selected "!" as your trigger, to use the command called "<a href="System.html#about">about</a>",
+                        you would need to type "!about" in a dAmn chatroom that your bot is also joined in. Your bot
+                        will see that you have sent a message beginning with its trigger, and will try and run the command
+                        you have requested.
+                    </p><p>
+                        In these pages, I am using "!" as the example trigger. When reading, simply replace "!" with your
+                        own trigger to get the proper syntax for each command.
+                    </p>
+                    <h3><a name="command_names"></a>
+                        Names</h3>
+                    <p>
+                        Each command has its own name. Command names have been covered very briefly in the section above.
+                        To help make it easier to recognise what the name of a command is, command names are shown in these
+                        pages <var>like this</var>.
+                    </p><p>
+                        Anything else shown in the command's syntax is either a sub-command, or an optional parameter.
+                    </p>
+                    <h3><a name="command_parameters"></a>
+                        Parameters</h3>
+                    <p>
+                        Command parameters are also sometimes referred to as "arguments". Parameters usually come <i>after</i>
+                        the command's name (and sub-commands, if any). Command parameters are usually shown <b>[inside square
+                        brackets]</b>. The words inside the square brackets usually define the <i>name</i> of the parameter.
+                    </p><p>
+                        Some commands have parameters which are optional, and do not need to be used when running the command.
+                        Optional parameters are shown <cite>[like this]</cite>, still inside square brackets.
+                    </p><p>
+                        As already mentioned, the syntax only shows the name of the parameters. The command description will
+                        usually give you an idea of what you need to type instead of the parameter name. When using the command,
+                        make sure to not actually include the square brackets around the parameters.
+                    </p><p>
+                        As an example, the command syntax for the <a href="System.html#extension">extension command</a> is
+                        "<b>!<var>extension</var> [extension_name]</b>". The comamnd gives information on the extension you define
+                        in the parameter "extension_name", so, to get information about the System extension you would have to
+                        type <em>"!extension system"</em>.
+                    </p>
+                    <h3><a name="command_channel"></a>
+                        The <cite>[channel]</cite> Parameter</h3>
+                    <p>
+                        On these pages, you might see "channel" as the first parameter, and it is usually optional. This means
+                        you can give the command an optional chatroom name to use in the command, rather than the name of the chatroom
+                        you are using the command from.
+                    </p><p>
+                        To actually use the first parameter in such a way, you should use the "#chatroom" format for the name
+                        of the channel. This tells the bot that you want to define the <em>target channel</em> as the one you have
+                        typed.
+                    </p><p>
+                        As a default, if you do not include the optional channel parameter, the command will use the channel you are
+                        using the command from.
+                    </p><p>
+                        Remember, this is only true if "channel" is the <em>first, optional parameter</em>! If it appears anywhere else,
+                        and/or it is not an optional parameter, then it may have a different purpose.
+                    </p>
+                    <h2><a name="extensions"></a>
+                        Extensions</h2>
+                    <p>
+                        Ok! Sorry for making this page so long! I just think that knowing the above should make things
+                        easier to understand if you are a newbie!
+                    </p><p>
+                        Onto the stuff that you need to know! Below is a list of extensions. Click the name of the extension
+                        to learn about its commands and features! Even with these pages, the best way to learn how to use
+                        the commands, is by using them!
+                    </p>
+                    <dl class="extlist">
+                        <dt>&raquo; <a href="System.html">System</a></dt>
+                        <dd>
+                            The system extension provides commands that let you take full control of your bot.
+                            You can change the bot's trigger, tell the bot what channels to join on startup,
+                            and even manage user levels!
+                        </dd>
+                        <dt>&raquo; <a href="dAmn.html">dAmn</a></dt>
+                        <dd>
+                            The dAmn extension provides commands that let you make your bot interact with dAmn,
+                            and you can view information about the bot's connection to dAmn. This can often be
+                            helpful.
+                        </dd>
+                    </dl>
+                </div>
+                <blockquote class="disclaimer">
+                    <p>
+                        Terra is in no way affiliated with or endorsed by deviantART.com.
+                        This is not an official service of deviantART.com. This is an independent
+                        project created by photofroggy:
+                            &lt;http://photofroggy.deviantart.com&gt;
+                    </p><p>
+                        THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
+                        APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+                        HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
+                        OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+                        THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+                        PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+                        IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+                        ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+                    </p>
+                </blockquote>
+            </div>
+        </div>
+    </body>
+</html>

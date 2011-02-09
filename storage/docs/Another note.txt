@@ -1,0 +1,21 @@
+Terra is a bot in Python using only custom and built-in modules
+and functions, meaning you only need to have Python 3.0+ installed
+to run this bot, and no extras!
+
+When making the bot, I was trying out new concepts, mainly ones that
+were new to me. One concept I have in Terra is the new event system. It's pretty
+familiar, but I think it is the first of its kind in a dAmn bot. The
+events system is always the basis for the extension system. Extensions
+bind their methods to events. This is kept as simple as possible. What
+separates the events system found here from other implementations, is the
+idea of "rulesets". These are modules which handle the binding, unbinding
+and triggering of each event. There is code inside the events system which
+is used if there is not appropriate ruleset, but it has allowed me to create
+a good way of triggering commands, and will hopefully provide you with better
+opportunities if you decide you want more functionality in the bot. There will
+be more on rulesets in other files in the ~/storage/docs folder.
+
+Once again, I have designed things to be incredibly simple. If you can't manage
+without documentation, then you probably shouldn't be using this bot. There is,
+however, some limited documentation, and if you can't get things working, even with
+the documentation available, then you deffinitely shouldn't be using this bot.

@@ -1,0 +1,153 @@
+
+	Terra is an experimental bot, and this can be shown in a few ways.
+	
+		* This is the first bot I have written and released in Python.
+		* The way extensions are loaded and configured is unique among dAmn Bots.
+		* I made the library to handle the socket connection to dAmn myself, rather than using Twisted.
+		* The user groups system does not use ordered privclasses, but inheritance is used.
+		* The events system introduces my idea of "rulesets" for events.
+	
+	Event rulesets are an interesting idea, and should make things much
+	more customisable. You can create a ruleset for an event, and drop
+	this ruleset in the folder ~/terra/rules.
+	
+	The rulesets themselves are simply Python classes. The classes must
+	contain the methods run, bind and unbind. If the methods do not exist,
+	then default methods in the events platform are used, and the custom
+	ruleset is disgarded.
+	
+	When instantiated, the ruleset is given a reference to the bot's core
+	object. If you are creating a ruleset, use an __init__ method to catch
+	the reference, and do whatever you need to do with it.
+	
+	As a default, all events use the default methods for binding and unbinding,
+	and running the bindings. As far as the main system is concerned, all
+	events are the same, including commands. Commands are bound using the
+	same methods in the extension's interface. There is, however, a ruleset
+	for commands.
+	
+	The ruleset for commands can be viewed as an example of how things work.
+	The file name for the ruleset is command.py. Take away the extension
+	".py" and you're left with "command". This defines the event namespace
+	which the ruleset is made for. You can create rulesets for any namespace,
+	as there are no predefined event namespaces.
+	
+	Inside command.py is a single class. Ruleset. Event rulesets must have this
+	class, and the class must contain the methods bind, unbind and run. The
+	Ruleset class will be used to handle all of the incoming event data for the
+	event. The ruleset must handle the data appropriately.
+	
+	== Binding ==
+	
+		Method: bind
+		Parameters:	str extension, str method, str event[, list/tuple options[, *additional]]
+		
+		NOTE: The extension parameter is the name of the extension making the
+		binding. The extension interface does not use the extension parameter,
+		as it already knows its own name.
+		
+		This method is called when an extension wants to make an event binding.
+		For example, an extension wanting to bind method e_recv_msg to event
+		recv_msg would use the following code:
+		
+			self.bind('e_recv_msg', 'recv_msg')
+		
+		If an extension wanted to make the event binding run only if the message
+		was received from channel #Botdom, the following code would be used:
+		
+			self.bind('e_recv_msg', 'recv_msg', ['chat:Botdom'])
+		
+		The options given define that the first parameter must be the raw dAmn
+		namespace for #Botdom. I will explain how this is relevant later.
+		
+		In the codes above, the variable ''event'' is set to "recv_msg". This
+		defines the event namespace used for the event binding. The method given
+		by variable ''method'' will be called when the event "recv_msg" is triggered.
+		
+		Because there is no ruleset for the event 'recv_msg', the default methods
+		in the event system are used to handle the binding. If the event 'command'
+		was used, then the command ruleset's bind method would be used. It's a simple
+		redirect.
+		
+		The ruleset is given all of the data that was received by the events system,
+		so the method in the ruleset will know the name of the extension making the
+		binding, the name of the method to be used in the binding, the event namespace
+		being referred to, and the options being given for the binding. The ruleset
+		can check any of the given parameters to make sure they are correct, and if they
+		are, the ruleset must store the binding in the Events class' Map attribute. That
+		can be accessed as Bot.Events.Map. Event bindings were stored as follows.
+		
+			Bot.Events.Map[event_namespace] = [
+				{
+					'ext' : extension,
+					'meth' : method, # A reference to the actual method should be stored rather than the name of the method.
+					'opt' : options
+				}
+			]
+		
+		As of build 90 (Build 90 (17052009-154523) Ground Control) event bindings are
+		represented instances of the terra.Events.Binding class. Instances have the attributes
+		"extension", "method", "options", "additional" and "type". The attributes "extension",
+		"method" and "options" are the equivalents of the keys "ext", "meth" and "opt", in the
+		dict shown above. "additional" represents additional information provided when binding
+		an event. Event bindings are now stored in this sort of fashion.
+		
+			Bot.Events.Map[event_namespace] = [
+				terra.Events.Binding( extension, method, options, additional )
+			]
+		
+		This provides a much more efficient way of storing and representing event bindings. This
+		change is for the better.
+		
+		NOTE: With commands, the additional information is used as the help string.
+		
+	== Unbinding ==
+	
+		Method: unbind
+		Parameters: str extension, str method, str event[, list/tuple options]
+		
+		NOTE: As with bind, the extension's interface does not take the extension parameter.
+		
+		This method is called when an extension wants to undo an event binding, so
+		it will no longer be triggered. Typically, the given values must match
+		exactly to values defined in an event binding. If no event binding matches,
+		then the event binding will remain. Extensions may use this code:
+		
+			self.unbind('e_recv_msg', 'recv_msg')
+		
+		This code would undo the binding set in the first example for event bindings,
+		but not the second binding, as the options parameter is not the same. This is
+		the default behaviour of the event rulesets, other rulesets may act differently.
+		
+		As with the bind method, the unbind method is given the exact same values, so
+		no confusions can happen. The ruleset, if there is one, can take the opportunity
+		to make any checks for the bindings, and make sure the right binding is undone.
+		
+	== Running ==
+	
+		Method: run
+		Parameters: dict binding, obj data
+		
+		This method is called several times by the events class when triggering an event.
+		The events class will loop through the event bindings, and run this method for
+		each binding, giving the method the received event data.
+		
+		The data object usually contains the attribute "for_rules", which is a list of
+		values generated by the event. This is what the ruleset must compare with the
+		options given in the bindings. In most dAmn events, the first parameter is the
+		raw dAmn namespace for the channel the event was received from. For messages,
+		the second parameter is the sender.
+		
+		Rulesets must make their own checks at this point. If the given parameters match
+		the options closely enough to satisfy the ruleset, the ruleset must call the method
+		stored in the event binding, and give the method the data object as its first and
+		only parameter. It would look something like this:
+		
+			binding.method(data)
+		
+		If you are making a ruleset, I recommend you put that part in a try..except block
+		to avoid crashing the bot if errors occur in the method when called.
+	
+	The best way to learn about the rulesets is to read them. Unfortunately the only real
+	ruleset that comes with this bot is the command ruleset, but it should serve as a good
+	example.

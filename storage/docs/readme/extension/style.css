@@ -1,0 +1,100 @@
+dl.cmds dt {
+    font-family: Georgia, "Palatino Linotype", Palatino, "Book Antiqua", "Times New Roman", Times, serif;
+    color: #003333;
+}
+
+dl.cmds dd p { margin-bottom: .5em; }
+dl.cmds dd p+p {
+    margin-top: .5em;
+    text-indent: 0em;
+}
+
+pre {
+	width: 90%;
+	background-color: #9bedff;
+	color: #394542;
+	padding: 10px 20px 10px 20px;
+}
+
+blockquote.basic {
+	border: 1px dotted #878787;
+	color: #878787;
+	padding-right: 20px;
+	padding-left: 20px;
+	width: auto;
+}
+
+blockquote.basic dfn {
+	font-weight: normal;
+    font-style: normal;
+	color: #006666;
+}
+
+var {
+	font-style: normal;
+	font-weight: bold;
+	color: #990000;
+}
+
+:not(abbr) cite, :not(acronym) cite {
+	font-weight: bold;
+	color: #339999;
+}
+
+p dfn {
+	font-weight: bold;
+	color: #99cccc;
+}
+
+ul.cmds, div.body > div > ol {
+	padding-left: 4.4em;
+	padding-right: 4.4em;
+}
+
+ul { list-style: none; }
+
+ul.cmds {
+	list-style: none;
+	margin: .5em 2.6em .5em 2.6em;
+	padding: 10px;
+	border: 1px dotted #878787;
+	color: #006666;
+}
+
+ul.cmds li {
+	display: inline;
+	margin: 0em;
+	padding: 5px 5px 5px 5px;
+	border: none;
+}
+
+ul.cmds li a {
+	color: #878787;
+	text-decoration: none;
+}
+
+ul.cmds li a:hover {
+	color: #000000;
+	text-decoration: none;
+}
+
+dl.extlist {
+    list-style: none;
+    padding-left: 1em;
+    margin-left: 3em;
+}
+
+dl.extlist dt { color: #394542; }
+dl.extlist dt a {
+    color: #21bfbf;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+dl.extlist dt a:hover {
+    color: #394542;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+dl.extlist dd { color: #003333; }

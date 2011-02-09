@@ -1,0 +1,21 @@
+
+		I was never actually intending to release Terra publicly. I only
+	changed my mind at around build 60. Terra was intended as a personal
+	project to help me learn Python. I really enjoyed everything about
+	making this bot, thinking of new new ideas, developing them, handling
+	dAmn in the best way I could think of ''without'' using Twisted. The
+	only thing I didn't particularly enjoy was writing the documentation
+	for the bot, but what's the point of releasing something without the
+	documentation?
+		Terra is a general purpose bot. You can, in theory, use it to do
+	anything you want it to do. The extensions system is very simple, easy
+	to use, and very developer friendly. The bot comes with an array of
+	extensions, but they are mainly the essentials. The events system is
+	simple, yet strong. Events are represented by objects which are passed
+	to the methods that handle them.
+		If you download Terra, I hope you don't have any difficulties getting
+	things going, and I hope you enjoy using it as much as I have enjoyed
+	making it.
+	
+	
+			-		photofroggy

@@ -1,0 +1,28 @@
+
+    Using the existing platform for event rulesets and
+    dynamic extension systems, I can create a web server
+    that displays pages based on data returned by event
+    handlers specific to the web server's events.
+    
+    Creating a small web server for the bot may produce a lot
+    of over-head, but it could be useful, and even be loaded and
+    unloaded dynamically.
+    
+    To make sure everything runs smoothly, the web server would
+    have to run in a separate thread. This would allow the bot
+    to keep running and responding to dAmn events as required, while
+    serving web pages to requests on localhost.
+    
+    == Flow ==
+    
+        Arrows represent data flow.
+        
+        dAmn -packet-> Viper -packet_obj-> Event System <-HTTPObject- Server <-HTTPRequest- Client
+          ^                                     |                                              ^
+          |                                event_data_obj                                      |
+          |                                     |                                              |
+          |                                     v                                              |
+          |                                 Extension                                          |
+          |                                     |                                              |
+          -------packet------ Viper  <----response_data----> Server ----HTTPResponse------------
+    

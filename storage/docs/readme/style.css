@@ -1,0 +1,152 @@
+html, body {
+    font-family: Verdana, Arial, sans-serif;
+    line-height: 1.6em;
+    font-size: small;
+}
+
+body {
+    width: 800px;
+    margin: auto;
+    background-color: #c6dbe0;
+    color: #157171;
+}
+h1, h2, h3, h4 { color: #003333;
+    font-family: Georgia, "Palatino Linotype", Palatino, "Book Antiqua", "Times New Roman", Times, serif; }
+div.wrap { margin: 5em auto 5em auto; }
+ul.topinfo {
+    margin: 0;
+    color: #878787;
+    padding: 5px 10px 5px 10px;
+    font-size: 8pt;
+    list-style: none;
+    color: #003333;;
+}
+ul.topinfo li {
+    display: inline;
+}
+div.body {
+    background-color: #FFFFFF;
+    border: 1px solid #69aab8;
+    padding: 0px;
+}
+h1.top {
+    margin: 2em 0em 0em 0em;
+    padding: 2px 50px 50px 50px;
+    color: #22a2a2;
+    border-bottom: 1px solid #69aab8;
+    font-size: 26pt;
+}
+ul.nav {
+    margin: 0;
+    border-top: 1px solid #E1EBE2;
+    border-bottom: 1px dotted #878787;
+    color: #878787;
+    padding: 10px 20px 10px 50px;
+    font-size: 8pt;
+    list-style: none;
+}
+ul.nav li {
+    display: inline;
+}
+div.body > div {
+    margin: 0;
+    padding: 15px 30px;
+    border-bottom: 1px dotted #878787;
+}
+p {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+blockquote.disclaimer {
+    color: #878787;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: auto;
+    font-size: 8pt;
+}
+a {
+    color: #69aab8;
+    text-decoration: none;
+}
+a:hover { color: #990000 }
+
+ul.oslist {
+    color: #69aab8;
+    list-style: none;
+    padding-left: 1em;
+    margin-left: 6em;
+}
+
+strong {
+    color: #990000;
+    font-style: normal;
+    font-weight: bold;
+}
+
+em { color: #003333; }
+dt em { font-style: normal; }
+
+dl dt {
+    padding-left: 2em;
+    color: #21bfbf;
+    font-weight: bold;
+}
+dl dd {
+    margin: auto 4em;
+    padding-left: .5em;
+    padding-right: 1em;
+}
+
+dl dd code, code.block {
+    display: block;
+    margin: .2em .2em;
+    border: 1px dotted #878787;
+    padding: 1em 2em;
+    background-color: #ecf5f7;
+    text-align: center;
+    font-style: italic;
+    color: #003333;
+}
+
+dd > code { margin-left: 4em; }
+code.block {
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+dl dd code a, code.block a { color: #4d8f9d; }
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+dd + dt { margin-top: 1em; }
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * *  *\
+  * =================================================================================  *
+  *                                                                    PRINTER CSS                                                                        *
+  * =================================================================================  *
+  *        This stuff is just for the printer! Again, trying to keep things sweet and simple in the             *
+  *        CSS so I'm trying to keep this part short.                                                                                       *
+  *                                                                                                                                                                     *
+  *        The CSS in this section relies on the default CSS for the website, which helps keep the         *
+  *        CSS minimal.                                                                                                                                       *
+\* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * *   */
+
+@media print {
+    div.body { border: none; }
+    ul.topinfo { display: none; }
+    h1.top {
+        margin: .5em 0em 0em 0em;
+        padding: 2px 50px 10px 10px;
+        border-bottom: 3px solid #000000;
+        color: #003333;
+        font-size: 32pt;
+    }
+    h1.top a { color: #003333; }
+    ul.nav { border-top: none; }
+    div.body > div { border-bottom: none; }
+    p a { font-weight: bold; }
+    blockquote.disclaimer { display: none; }
+}

@@ -1,0 +1,893 @@
+
+    Welcome to the build list!
+    This tells you the date of each build, and perhaps some brief details.
+    The format for build names is "Build [build number] ([date]-[time(24hr - HHMMSS)]) [Series name]
+
+    Build 118 () Legacy
+        * Bumped version to 2!
+        * This is essentially a rewrite!
+
+    Build 117 (06122010-011554) Flux
+        * Changed the dsp extension to use the TDS namespace for PROVIDER.
+        ** This should make figuring out who the master is easier.
+        * Added support for bots-(dis)allow.
+        * Added the BDS version to BOTCHECK:RESPONSE
+        * Created the package terra.sys_extensions.
+        ** Moved System.py and dsp.py to terra.sys_extensions.
+        ** sys_extensions has been created so that required extensions can be kept out of the way.
+        ** Users are less likely to fiddle with stuff in there.
+        * Created System Plugin "tds".
+        * TDS Master/Slave system implemented.
+        ** Only a rough draft at the moment.
+        * Updated to latest build of dAmn Viper.
+    
+    Build 116 (13102010-032040) Flux
+        * Fixed a terrible bug in the database API.
+        * Changed the extension loading code to display error messages associated with exceptions.
+        * Fixed a bug in the extension system.
+        * Added a command to the Terrafm extension.
+        ** !fmname list
+        *** Lists the accounts associated with deviantART names.
+        * Fixed a bug in Welcome.py.
+        ** Thanks to Flaimdude for testing the fix.
+        * Removed database API.
+        ** This was a pointless exercise tbh.
+        * Updated the extension storage API to use misc_lib's export_struct method.
+        * Command updated - !note list.
+        ** This command now bolds unread note IDs.
+        *** Notes extension updated to compensate.
+        * Changed misc_lib.
+        ** Added some comments.
+        ** Added two methods.
+        *** Moved method `create_folders` from terra.Custom.
+        *** Moved method `clean_files` from terra.Custom.
+        **** Edited core to compensate for the above.
+        * Changed extensions so that they are threaded.
+        ** Updated extension and event systems to compensate.
+        * Added support for DSP messages in the event system.
+        ** Added a dsp_msg Ruleset.
+        *** Created the class terra.rules.dsp_msg.Ruleset
+        *** Created the class terra.rules.dsp_msg.Binding
+        *** Created the class terra.rules.dsp_msg.dsp_msg
+        **** Instances of this represent the DSP message event.
+        *** Created the class terra.rules.dsp_msg.dsp_trigger
+        **** dsp_msg objects use instances of this to represent the DSP trigger.
+        ** Created a BDS extension.
+        *** This extension processes incoming DSP messages in #DataShare.
+        *** botcheck fully supported.
+        * Updated to latest build of dAmn Viper.
+        * Changed the custom logger method to make muting channels easier.
+        * Muted #DataShare.
+        
+    Build 115 (24042010-023750) Flux
+        * Added a database API for extensions!
+        ** This has suffered several modifications during the build.
+        ** Most useful database commands have a method for them.
+        *** The level of abstraction for each command differs.
+        * misc_lib.export_struct now outputs valid JSON code!
+        * Main configuration file uses JSON from misc_lib.export_struct.
+        * Users configuration file uses JSON from misc_lib.export_struct.
+        * Removed pointless code from the eval command handler.
+        * Added to the existing documentation!
+        ** Created the file ~/storage/docs/readme/extension/index.html.
+        *** This file introduces extensions and commands.
+        ** Rewrote the OS X setup instructions.
+        *** It's sort of a cop-out really, as I don't have OS X to test things on.
+        ** Created the file ~/storage/docs/readme/dAmn.html
+        *** Used my own doc_factory tp create the HTML for this.
+        
+    Build 114 (14042010-162933) Flux
+        * Edited the extension command.
+        ** It is now slightly more intelligent.
+        * Fixed an error in Terrafm.
+        ** Last.fm keep changing their bloody API!
+        * Changed series name.
+        ** Changed to "Flux".
+        * Changed Terrafm slightly.
+        ** Fixed bugs in the method api.current.
+        ** Allowed any user to set their last.fm username.
+        *** Use the command !fmname to view and set the stored usernames.
+        ** !tasteometer now automatically compares tastes with you.
+        *** This is only if you do not provide two usernames in the first place.
+        * Updated to latest build of dAmn Viper.
+        
+    Build 113 (06042010-032007) Major Tom
+        * Fixed a minor bug in terra.misc_lib.
+        ** Thanks, once again, to blazer-flamewing, for finding the bug.
+        * Updated the extension "dAmn" to compensate.
+        * Cleaned up terra.misc_lib a little.
+        * Fixed a bug that stopped Terra from restarting.
+        ** Thanks to Angie for telling me about that one.
+        * Made it possible to reload extensions!
+        ** This is made easier thanks to Python 3's imp module.
+        * Fixed a small bug in the AI extension.
+        
+    Build 112 (16032010-003705) Major Tom
+        * Added code to clean up the dAmnViper folder.
+        * Quit command no longer takes "hard" as an argument.
+        ** Use "!quit soft" to stop the bot from completely exiting.
+        ** The default action of "!quit" is now that of "!quit hard".
+        * Updated to latest build of dAmn Viper.
+        * Debug mode now displays the title and topic of a channel in the console.
+        ** This only happens when dAmn actually sends the title or topic to the bot.
+        * Fixed a bug in debug mode.
+        ** The method terra.Events.Platform.load_exts was using a non-existent variable.
+        * Changed the way that the event object takes in data.
+        * Fixed some other small bugs and cleaned up the code a bit.
+        * Changed development state to Public Beta!
+        
+    Build 111 (25112009-002308) Ground Control
+        * Removed ~/extensions/OFF/Example.py.
+        ** ~/extensions/OFF/Hello_World.py works fine as an example extension.
+        * Reworked Terrafm's fmrecent command to work with changes made to Last.fm's output.
+        * Fixed various bugs around the place.
+        * Updated to latest build of dAmn Viper!
+        ** Made appropriate changes to make sure the bot works with the new build.
+        
+    Build 110 (05102009-215143) Ground Control
+        * Moved the setup HTML files around a bit.
+        * README html and CSS updated and tweaked somewhat.
+        * Setup instructions for Linux are near enough finished.
+        ** Thanks to electricjonny for the help!
+        
+    Build 109 (04102009-210108) Ground Control
+        * Altered the README HTML files slightly.
+        * Fixed a bug in the README HTML files.
+        * Fixed a bug in the Google extension.
+        
+    Build 108 (04102009-182759) Ground Control
+        * Rearranged README.html slightly.
+        * Moved the README CSS into a separate file: ~/storage/docs/rsrc/style.css.
+        * Created setup instruction files in the HTML format.
+        ** Created ~/storage/docs/setup_windows.html.
+        ** Created ~/storage/docs/setup_osx.html.
+        ** Created ~/storage/docs/setup_linux.html.
+        *** These instructions are not yet finished.
+        *** The Windows setup instructions are near-enough finished, and I would appreciate feedback.
+        * Fixed a bug in the TerraFM extension.
+        ** The nowplaying command now returns correct responses.
+        ** AutoNP now works as expected.
+        * Fixed a bug in terra.Core.main which prevented the bot from starting up.
+        
+    Build 107 (27092009-130825) Ground Control
+        * Fixed a bug in rebooting the bot.
+        ** Thanks to nichka for pointing out the bug to me.
+        * Rearranged the core class.
+        
+    Build 106 (14092009-172636) Ground Control
+        * Fixed a bug in the Birthday extension.
+        * Changed the terra.extension.storage.file_op method to prevent extensions from using files outside of the storage folder.
+        * Changed the shebang line of the run scripts to call the python3 runtime, rather than Python3.0.
+        * Moved method terra.Events.event.arguments to terra.misc_lib.arguments.
+        ** The terra.Events.event class now creates a wrapper for the arguments method if the event has a message attached to it.
+        * Fixed code in terra.menu which may be buggy on Linux.
+        ** The bug still has not been fully resolved. Bug found thanks to cypher-neo.
+        * Made other changes. I forget what they are though...
+        
+    Build 105 (28082009-211234) Ground Control
+        * Updated to dAmn Viper build 36.
+        * Corrected some stupid mistakes in the bot's core and extensions.
+        * Finished the title and topic commands in the dAmn extension.
+        
+    Build 104 (28082009-151502) Ground Control
+        * Updated to dAmn Viper build 35.
+        ** This fixes the members command.
+        
+    Build 103 (28082009-042308) Ground Control
+        * Updated to dAmn Viper build 34.
+        ** Updated internal code to compensate for changes made to dAmnViper.
+        ** Made the terra.Custom.Client class cleaner.
+        *** This is done by taking advantage of new features in the latest dAmnViper builds.
+        ** Created method terra.Custom.Client.nullflags.
+        *** Still calls dAmnViper's ReconnectingClient.nullflags method.
+        * Made terra.misc_lib a far less colourful place.
+        ** Removed needless comments. Very few people will read it anyways.
+        * Added __inst__ method to the terra.Events.Binding class.
+        ** This method is to be overwritten by classes which extend the class.
+        ** Class terra.rules.command.Binding uses the __inst__ method to manipulate the type property.
+        * Brushed up core code in various places.
+        * Fixed some minor bugs.
+        * Need to make more significant changes.
+        
+    Build 102 (16062009-125637) Ground Control
+        * Fixed the user control system.
+        ** Groups were not being cleared where appropriate.
+        ** Groups were not being returned properly.
+        ** The owner was not being properly added as the owner.
+        
+    Build 101 (14062009-165003) Ground Control
+        * Fixed a very very very stupid bug.
+        
+    Build 100 (14062009-161101) Ground Control
+        * Updated to latest build of dAmn Viper.
+        ** Updated code to compensate.
+        * Fixed a bug which prevented the main menu from loading properly.
+        ** Thanks for Frozen-Jakalope for pointing that one out.
+        * Launch scripts now import Launch instead of spawning subprocesses.
+        * Reimplemented user group aliases.
+        * Fixed other bugs all over the place.
+        * Added class terra.extension.storage.
+        ** This replaces the file operation methods in terra.extension.api.
+        ** Create an instance of this class if you want to access files in storage.
+        
+    Build 99 (09062009-223948) Ground Control
+        * Fixed bugs found by nichka.
+        ** Thanks!
+        * Updated to latest build of dAmn Viper.
+        ** Updated core to compensate.
+        * Restructured the core code.
+        ** Now uses dAmn Viper as it was intended.
+        ** Removed modules:
+        *** terra.Console.
+        *** terra.configure.
+        *** terra.networkconfig.
+        *** extensions.dAmn_Manager.
+        ** Recoded modules:
+        *** Launch.
+        *** terra.Core.
+        *** terra.menu.
+        ** Added module terra.Custom.
+        *** Added class terra.Custom.Client(terra.dAmn.Client)
+        *** Added method terra.Custom.get_input.
+        *** Added method terra.Custom.Config.
+        ** Updated core modules to compensate for the above changes.
+        ** Updated extensions to compensate for the above changes.
+        
+    Build 98 (29052009-183339) Ground Control
+        * Updated to latest build of dAmn Viper.
+        ** Updated core code to compensate.
+        ** Updated extensions to compensate.
+        * Fixed a bug in the default event ruleset class.
+        
+    Build 97 (29052009-013751) Ground Control
+        * Added method intftimelen() to misc_lib.
+        * Tweaked code.
+        * Removed pkt_* and logfpkt_* methods from dAmn.
+        * Added class protocol to module terra.dAmn.
+        ** This class dynamically processes packet data from dAmn.
+        ** Updated bot code to compensate.
+        * Other stuff that I can't remember.
+        
+    Build 96 (27052009-184615) Ground Control
+        * More bug fixes.
+        * Changed code to use subprocess instead of os.spawn*.
+        * Also rectified a stupid mistake.
+        ** I was spawning "python" rather than sys.executable. Silly me.
+        * Done a massive rehaul of core code.
+        ** Most configuration files now use json.
+        *** Updated core to compensate.
+        ** Remodeled the extensions system to get rid of references to the core class.
+        *** Updated all code to compensate.
+        ** Allowed room for in __inst__() method in extensions.
+        ** Remodeled the user access controls.
+        *** Code for the controls is more simplified.
+        *** Lost inheritance and exclusions as a result.
+        *** Temporarly lost group aliases.
+        *** Updated all code to compensate.
+        ** Removed misc_lib.save_config().
+        ** Moved most core object attributes to a nested class.
+        *** Updated all code to compensate.
+        * Even more bug fixes.
+        
+    Build 95 (24052009-214405) Ground Control
+        * Fixed some bugs here and there.
+        * Changed extend module to contain class "base".
+        ** Extensions should extend this class.
+        ** Events system updated to compensate.
+        *** Reduced amount of hackery here.
+        ** Updated core class to compensate.
+        ** All extensions updated to compensate.
+        * Added extension "Hello world".
+        ** This is a more simple example extension.
+        * Brushed up the away extension a bit.
+        ** Renamed command 'awayconf' to 'away'.
+        ** Added a more detailed help string for the 'away' command.
+        * Fixed extension reloading.
+        ** References were left unchanged, so event bindings failed.
+    
+    Build 94 (23052009-172836) Ground Control
+        * Fixed bugs that stopped Terra from launching properly.
+        ** Thanks to testing on Linux OS' by Rhyk and Frozen-Jakalope.
+        * Restructured the events system a bit.
+        ** Updated bot code to compensate.
+        ** Extension interface is not affected by these changes.
+    
+    Build 93 (20052009-223508) Ground Control
+        * Reworked events system to get rid of unneeded data.
+        ** Instances of Events.event no longer have the for_rules list when passed to handlers.
+        ** People making rulesets should be wary of these changes.
+        * Tweaked code in the dAmn module.
+        * Fixed some more code here and there.
+    
+    Build 92 (19052009-213957) Ground Control
+        * Added extension Google.
+        * Added module terra.extra.Google.
+        ** Extension Google uses terra.extra.Google.
+        * Fixed some minor bugs.
+        * Moved terra.dAmn_tablumps to dAmn.tablumps.
+        ** Updated code to compensate.
+        * Made some improvements to Events.event.arguments().
+        * Added dummy method __inst() to Events.event object.
+        
+    Build 91 (18052009-011239) Ground Control
+        * Fixed bugs in event.arguments().
+        * Tweaked code slightly.
+        * Removed misc_lib.WriteFile().
+        ** Updated core to compensate.
+        * Removed misc_lib.ReadFile().
+        ** Updated core to compensate.
+        * Created an HTML readme file.
+        ** Playing around with ideas.
+        * Removed redundant file ~/terra/tablumps.py.
+        * Fixed a bug involving filepaths.
+        ** If the bot was in a folder with a space in the name, it would not restart.
+        
+    Build 90 (17052009-154523) Ground Control
+        * Made a lot of bug fixes.
+        * Created the class Events.Binding.
+        ** Updated events system to use instances of this class.
+        * Added method arguments() to the Events.event object.
+        ** Updated bot code to use this instead of misc_lib's args().
+        ** Removed misc_lib's args() function.
+        * Made fixes to the dAmn Library.
+        * Experimented with SQLite3 logging.
+        ** Got a working prototype.
+        ** Not included in builds until ready.
+        * More changes that I can't seem to remember.
+        
+    Build 89 (25022009-220351) Ground Control
+        * Added extension "Responses".
+        ** Added command response.
+        * Cleaned up code.
+        * Fixed various bugs.
+        
+    Build 88 (24022009-214542) Ground Control
+        * Added extension "Terms".
+        ** Added command term.
+        ** Added command defterm.
+        * Fixed various bugs.
+        
+    Build 87 (18022009-152710) Ground Control
+        * Fixed extension reloading.
+        * Fixed a bug in the Console.
+        * Save data directories for extensions are now resolved to their full pathnames.
+        * Added a change log of sorts.
+        ** It's just a condensed build list, and far too messy.
+        
+    Build 86 (17022009-163245) Ground Control
+        * Fixed some minor bugs.
+        * Renamed command "away" to "awayconf".
+        * Added Welcome extension.
+        ** Added command wt.
+        ** Added command welcome.
+        * Welcome extension is in the OFF folder with all extra extensions.
+        
+    Build 85 (13022009-001129) Ground Control
+        * Added an Away extension.
+        ** Added command away.
+        ** Added command setaway.
+        ** Added command setaway.
+        * Fixed various bugs.
+        
+    Build 84 (12022009-221934) Ground Control
+        * Added a Games extension.
+        ** Ported from Contra.
+        * Fixed various bugs.
+        
+    Build 83 (12022009-022509) Ground Control
+        * menu.py now offers the chance to reboot the bot before exiting.
+        * Fixed a few typos.
+        ** Thanks to nichka for bringing these to my attention.
+        * Fixed various bugs.
+        * Updated to latest build of dAmn Viper.
+        
+    Build 82 (12022009-003641) Ground Control
+        * Moved ~/extensions/AI.py to ~/extensions/OFF
+        * Changed the AI extension to only have a single status.
+        * Removed the AI command.
+        * Changed ~/terra/extend.py to use os.join.path() where appropriate.
+        * Added information strings to all current commands.
+        * Changed parameters for binding events.
+        ** Information parameter removed.
+        * Command ruleset now uses the first additional argument as the information string.
+        * Fixed the events platform so that underscores are removed from extension names.
+        * Removed try..except blocks where they weren't needed.
+        
+    Build 81 (10022009-135628) Ground Control
+        * Removed all .cmd and .command files.
+        ** These have been replaced by .py files.
+        ** Rewrote README.txt to reflect changes.
+        * Moved the license to ~/storage/docs
+        * Renamed ~/core to ~/terra
+        * Moved ~/extra to ~/terra
+        * Turned ~/terra into a package.
+        * Turned ~/terra/extra into a package.
+        * Turned ~/terra/rules into a package.
+        * Turned ~/extensions into a package.
+        * Turned ~/storage into a package.
+        * Reworked the Login class in ~/terra/dAmn.py
+        * Fixed various bugs in the system.
+        * Reworked source code to use os.path.join() where appropriate.
+        
+    Build 80 (29012009-123851) Ground Control
+        * Reworked the run.py file to work better.
+        * Made network settings configurable.
+        ** Created ~/core/network_config.py to handle configuring.
+        *** ~/core/network_config.py creates ~/storage/nwconfig.py
+        ** The configuring script can only be accessed via the main menu.
+        ** If default settings are used, ~/storage/nwconfig.py is deleted.
+        * Changed menu.py to accomodate for new options.
+        * Changed the dAmn Manager extension to accomodate for the config.
+        
+    Build 79 (25012009-185304) Ground Control
+        * Updated to latest build of dAmn Viper.
+        * Done some bug fixes.
+        * Brushed up on code in some areas.
+        * Improved on the Last.fm API slightly.
+        
+    Build 78 (11012009-223319) Ground Control
+        * Added file ~/storage/docs/Thought process - Extensions and events.txt
+        * Added module lastfm.
+        ** This is used by Terrafm.
+        * Added extension Terrafm.
+        ** Added command 'nowplaying'.
+        ** Added command 'autonp'.
+        ** Added command 'fmrecent'.
+        * Fixed various bugs.
+        * Enabled autorejoin.
+        * Added extension AI.
+        
+    Build 77 (11012009-030805) Ground Control
+        * Renamed command line scripts.
+        * Updated README file.
+        * Added file ~/storage/docs/Note from the author.txt
+        * Fixed some minor bugs.
+        * Added a type variable to the extensions base.
+        
+    Build 76 (11012009-003058) Ground Control
+        * Fixed bugs caused by changed user groups too much.
+        * Fixed various bugs in other places.
+        * Changed the extension API.
+        ** You must give a reference to a method instead of just a name when binding.
+        ** Updated all extensions to work with the new API.
+        * Updated to latest build of dAmn Viper.
+        
+    Build 75 (10012009-023029) Ground Control
+        * Added class Groups.User.
+        * Integrated User objects in the user group system.
+        * Updated rest of bot to work with the new system.
+        * Fixed inherent bugs from using the dAmn.Channel object excessively.
+        
+    Build 74 (09012009-133041) Ground Control
+        * Added class command.event.
+        ** This is an extension of Events.event.
+        ** The output of __repr__() and __str__() is slightly different.
+        * Changed the dAmn.Channel class.
+        ** Added a __str__() function.
+        ** Added a __repr__() function.
+        ** Added a type() function.
+        * Events now use the dAmn.Channel instance for the channel where possible.
+        ** This is instead of just using a raw string.
+        * Updated rest of code to work with these changes.
+        * Created module menu.py.
+        ** Moved function misc_lib.menu() to menu.py.
+        ** Renamed function menu() to run().
+        ** Improved function code slightly.
+        * Updated run.py to work with these changes.
+        * Fixed small errors found in several places.
+        
+    Build 73 (08012009-155429) Ground Control
+        * Changed license to GNU General Public License version 3.
+        * Updated to latest build of dAmn Viper.
+        * Added function __create_log_path__ to Console.py.
+        * Added properties log_path and log_path_access to class Console.setting
+        * Created module configure.py.
+        ** Moved source of misc_lib.config() to configure.py.
+        ** Reorganised the code to work better.
+        * Changed other parts of the bot to import configure when needed.
+        * Removed the need to call configure in run.py.
+        * Made changes to Events.object.
+        ** Renamed to Events.event.
+        ** Added method __repr__()
+        ** Added method __str__()
+        *** Returns string "<event 'event_name'>".
+        ** Attributes can no longer be deleted.
+        * Updated code in dAmn Manager.py to work with the changes to Events.object.
+        
+    Build 72 (07012009-233343) Ground Control
+        * Reorganised Console.py.
+        ** Class Console no longer exists.
+        *** Previous methods are now loose functions in the module.
+        ** Added class setting to Console module.
+        ** Moved cli_in() to Console.py from misc_lib.py.
+        *** Renamed cli_in() to get_input().
+        ** Moved cli_args() to Console.py from misc_lib.py.
+        *** Renamed cli_args() to get_args().
+        ** Added function menu() to Console.py.
+        ** Console.py functions now use sys.stdout.write() instead of print()
+        * Changed the rest of the source to work with the above changes.
+        
+    Build 71 (06012009-221631) Ground Control
+        * Updated to latest build of dAmn Viper.
+        * Updated code to work with changes in dAmn Viper.
+        * Brushed up on code in several places.
+        
+    Build 70 (23122008-005620) Ground Control
+        * Updated to latest build of dAmn Viper.
+        * Cleaned up code in Events.py.
+        * Cleaned up code in command.py.
+        * Made things more readable.
+        
+    Build 69 (19122008-171608) Ground Control
+        * Updated to latest build of dAmn Viper.
+        * Added more documentation.
+        
+    Build 68 (17122008-125734) Ground Control
+        * Added function timelen_until() to misc_lib.
+        ** Returns a timelen tuple.
+        * Events system now catches exceptions raised by extensions.
+        * Event "quit" is now triggered when the main loop exits.
+        * Added extension Birthdays.
+        ** This is in the OFF folder.
+        ** It's quite a simple idea, but shows what you can do with pickles and suchlike.
+        
+    Build 67 (14122008-214217) Ground Control
+        * Fixed minor bugs in System extension.
+        
+    Build 66 (14122008-160709) Ground Control
+        * Updated to latest build of dAmn Viper.
+        * Made slight changes to the way the authtoken grabbing process is handled.
+        * Reordered how extensions are loaded and reloaded.
+        * Added a notes extension.
+        ** Now you can leave notes for people.
+        * Made some changes to the way the target namespace is detected when triggering commands.
+        
+    Build 65 (11122008-202548) Ground Control
+        * Fixed some more bugs found by cthom06.
+        
+    Build 64 (11122008-162538) Ground Control
+        * Replaced raw_input() with input().
+        * Fixed a bug in the Console class.
+        * Fixed a bug in the viper command.
+        ** Thanks to cthom06 for pointing those out to me.
+        * Updated to latest build of dAmn Viper.
+        
+    Build 63 (11122008-130351) Ground Control
+        * Got rid of all printf formatting.
+        
+    Build 62 (11122008-104928) Ground Control
+        * Moved log_* methods to dAmn.py.
+        * Renamed log_* functions to logfpkt_*
+        * logfpkt_* functions now return a tuple.
+        * dAmn Library extension renamed to dAmn Manager.
+        * dAmn Manager handles logfpkt_* functions appropriately.
+        * Changed more of the printf formatting to .format().
+        ** Still got a way to go with those.
+        
+    Build 61 (11122008-005745) Ground Control
+        * Fixed a small bug when parsing commands.
+        
+    Build 60 (11122008-005028) Ground Control
+        * Fixed bugs around the place.
+        * Updated code to closer meet the standards defined in PEP 8.
+        ** URL: http://www.python.org/dev/peps/pep-0008/
+        ** Changed most printf formatting to .format().
+        *** The rest will be changed later.
+        * Updated to latest build of dAmn Viper.
+        * Commands now use their docstrings for help strings.
+        * Made the events system cleaner.
+        * Commands ruleset is cleaner.
+        * Changed most printf formatting to .format().
+        ** The rest will be changed later.
+        * Added methods to the extension base class.
+        ** read(file) - reads data from file.bsv in the extension's storage folder.
+        ** write(file, data) - writes data to file.bsv in the extension's storage folder.
+        ** unlink(file) - unlinks file.bsv from the extension's storage folder.
+        ** pickle(file, object) - pickles object to file.bsv in the extension's storage folder.
+        ** unpickle(file) - returns unpickled data from file bsv in the extension's storage folder.
+        * Reorganised extension loading process slightly.
+        * Added command "exec".
+        * Commands command now shows the correct number of commands present.
+        
+    Build 59 (08122008-190134) Ground Control
+        * Brushed up code in places.
+        * Ported to Python 3000!
+        * Updated to latest build of dAmn Viper.
+        
+    Build 58 (04122008-223159) Ground Control
+        * Disabled restarting when running from the main menu.
+        * Added INFO.txt to ~/extensions/OFF
+        
+    Build 57 (03122008-205030) Ground Control
+        * Added an example extension.
+        * Added folder ~/extensions/OFF
+        
+    Build 56 (03122008-134532) Ground Control
+        * Fixed error in which the core deleted the password from the config file.
+        * Debug mode now writes all console messages to a file.
+        * Debug mode now tells you if someone tries to run a command which doesn't exist.
+        
+    Build 55 (03122008-113154) Ground Control
+        * Added a readme file.
+        
+    Build 54 (03122008-000000) Ground Control
+        * Made changes to the way system information is gained.
+        ** This was done in an effort to make things more portable.
+        
+    Build 53 (02122008-232540) Ground Control
+        * Added ping command.
+        
+    Build 52 (02122008-224531) Ground Control
+        * Used chmod to own folders.
+        * Made the event system unbind any events left behind by unsuccessful extensions.
+        ** A bug was brought to my attention by philo23. Thanks again.
+        
+    Build 51 (02122008-215309) Ground Control
+        * Completed user group management commands.
+        ** Forgot about those before...
+        
+    Build 50 (02122008-081856) Ground Control
+        * Changed startup messages slightly.
+        * Added more cmd and command scripts.
+        ** Lovely CLI! Lolololololol.
+        * Bumped to version number 1.
+        ** Development state: Beta Preview.
+        ** Mainly docs and extra useless commands left now.
+        
+    Build 49 (02122008-075234) Peak
+        * Added command 'title'.
+        * Added command 'topic'.
+        ** Both of the above emulate the dAmn commands of the same name.
+        
+    Build 48 (01122008-232015) Peak
+        * Added command 'members'.
+        ** This lists the members in a given channel.
+        
+    Build 47 (01122008-225620) Peak
+        * Slightly changed the output of the whois command.
+        
+    Build 46 (01122008-215517) Peak
+        * Completed handling for the whois command.
+        * Made a slight change to strftimelen().
+        
+    Build 45 (01122008-195027) Peak
+        * Added command 'ctrig'.
+        ** This lets you change your bot's trigger.
+        * Added command 'sudo'.
+        ** Perform a command as someone else.
+        *** Lololololololol.
+        
+    Build 44 (01122008-175034) Peak
+        * Emulated all native dAmn commands.
+        * Renamed command 'send' to 'raw'.
+        * Updated to latest build of dAmn Viper.
+        * Modified the bot's user agent string.
+        
+    Build 43 (01122008-143918) Peak
+        * Added command 'autojoin'.
+        ** This allows people to view and manage the bot's autojoin list.
+        * Added command 'channels'.
+        ** Shows the currently joined channels.
+        * Made improvements to misc_lib.
+        * Added pointless security measures to protect the password.
+        * Made command method c_kick into a lambda.
+        
+    Build 42 (01122008-123956) Peak
+        * Fixed command eval.
+        ** Now shows it's own style of trace stack in the console on error.
+        * Tweaked timelen functions in misc_lib.
+        
+    Build 41 (30112008-223509) Peak
+        * Added command "e"/"eval" which evaluates a python expression.
+        
+    Build 40 (30112008-190152) Peak
+        * Improved System extension method "cmd_listing" slightly.
+        * Moved command "reload" to a subcommand of "extensions".
+        
+    Build 39 (30112008-174612) Peak
+        * Fixed user access control for commands.
+        
+    Build 38 (30112008-172245) Peak
+        * Added some simple commands to manage and list bot users.
+        * Fixed some small errors in the user group system.
+        * Changed function timelen() in misc_lib slightly.
+        
+    Build 37 (30112008-145609) Peak
+        * Updated run files. Hopefully pybin isn't needed now.
+        * Made it possible to reload extensions.
+        * Brushed up code here and there.
+        
+    Build 36 (29112008-192033) Peak
+        * Added functions to misc_lib.
+        ** Function human_list returns a grammatically correct string of a list.
+        ** Function timelen returns a tuple of time lengths from a timestamp.
+        *** (years, weeks, days, hours, minutes, seconds)
+        ** Function strftimelen returns human_list(timelentuple)
+        * Added uptime command.
+        * Added command "connected" to show time connected to dAmn.
+        * Added command "disconnects" to show how many times the bot has disconnected.
+        * Added command "refresh" to refresh the connection to dAmn.
+        * Extension command now shows the command list for the extension.
+        
+    Build 35 (29112008-121528) Peak
+        * System command now returns system information.
+        
+    Build 34 (29112008-114403) Peak
+        * Now responds to trigcheck!
+        * Made the configuration process slightly more intuitive.
+        * Extensions can actually change their name in the code now.
+        
+    Build 33 (29112008-104012) Peak
+        * Added more system commands and stuff! Yeah!
+        * Improved the command ruleset.
+        * Fixed small bugs here and there.
+        
+    Build 32 (28112008-000621) Peak
+        * Improved main .cmd file.
+        * Added a .command file.
+        
+    Build 31 (27112008-223042) Peak
+        * Updated to latest build of dAmn Viper.
+        * Added some basic commands!
+        ** Join, part, say, send and me/action for dAmn.
+        ** Quit, restart, about and build for System commands.
+        ** "viper" shows build info for dAmn Viper.
+        * Command ruleset now allows lists as commands.
+        ** This means you can set several names to one command.
+        *** This should help save memory.
+        * Autojoin channels are actually joined now.
+        * Fixed minor bugs in other places around the core.
+        
+    Build 30 (27112008-122856) Tor
+        * Updated to latest build of dAmn Viper.
+        * Refined connection handling.
+        ** Disconnects detected in part messages.
+        ** Disconnects when no channels are joined.
+        * Modified Events handler to allow lists/tuples as an option.
+        
+    Build 29 (26112008-224309) Tor
+        * Fixed a few bugs in pkt_ functions.
+        * Added a basic ruleset for event "command".
+        * Created a basic method to search for commands.
+        * Created a test command as a proof of concept.
+        
+    Build 28 (26112008-182720) Contour
+        * Updated to latest build of dAmn Viper.
+        * Finished channel data management code.
+        * Renamed attribute "from" to "user" in events.
+        * Might slight changes to the Events platform.
+        
+    Build 27 (26112008-005705) Contour
+        * Successfully managed to remove channels on part/kick.
+        ** Thanks to testing done in #WebDevelopment with philo23.
+        
+    Build 26 (26112008-002243) Contour
+        * Updated to latest build of dAmn Viper.
+        * Started creating Channel class in dAmn module.
+        ** Hooked join event successfully in #WebDevelopment.
+        
+    Build 25 (25112008-204939) Thumper
+        * Finished dAmn logging methods.
+        ** Logs recv_admin_rename.
+        ** Logs recv_admin_move.
+        ** Logs recv_admin_remove.
+        ** Acknowledges recv_admin_show.
+        ** Logs recv_admin_privclass.
+        ** Logs kicked.
+        ** Logs ping.
+        ** Logs disconnect.
+        ** Logs send errors.
+        ** Logs kick errors.
+        ** Logs get errors.
+        ** Logs set errors.
+        ** Logs kill errors.
+        ** Logs unknown packets.
+        
+    Build 24 (25112008-183412) Thumper
+        * Added more logging methods.
+        ** Logs recv_privchg.
+        ** Logs recv_kicked.
+        ** Logs recv_admin_create.
+        ** Logs recv_admin_update.
+        
+    Build 23 (25112008-171845) Thumper
+        * Added logging method for recv_msg/action.
+        * Fixed small error in pkt_ functions.
+        
+    Build 22 (24112008-234608) Thumper
+        * Started on logging everything!
+        ** dAmn handshake successfully logged.
+        ** dAmn Login successfully logged.
+        ** dAmn join successfully logged.
+        * Fixed some small problems in some code.
+    
+    Build 21 (24112008-135512) Thumper
+        * Updated to latest build of dAmn Viper.
+        ** We now have format_ns() and deform_ns() methods!
+        
+    Build 20 (23112008-171232) Thumper
+        * Fixed small errors in pkt_ functions.
+        * Updated to latest build of dAmn Viper.
+        * Successfully tested dAmn lambda methods!
+        
+    Build 19 (23112008-130506) Thumper
+        * Rearranged function pkt_property slightly.
+        * Renamed extension dAmn Lib to dAmn Library.
+        
+    Build 18 (22112008-161323) Thumper
+        * Updated to latest build of dAmn Viper.
+        * Added basic handling for login packet.
+        * Logged into dAmn for the first time!
+        * Authtoken is now stored on file.
+        
+    Build 17 (22112008-122912) Thumper
+        * Moved pkt_ commands into dAmn.py.
+        
+    Build 16 (22112008-122723) Thumper
+        * Updated to latest build of dAmn Viper.
+        * Moved out of pre-alpha into Alpha.
+        
+    Build 15 (17112008-214056) Rambler
+        * Finished first prototype for the packet sorter.
+        
+    Build 14 (17112008-191723) Apollo 13
+        * Made a solid start to processing dAmn packets.
+        * Fixed up code here and there.
+        * dAmn Handshake handled properly!
+        
+    Build 13 (16112008-204356) Mission Control
+        * Updated to latest build of dAmn Viper.
+        * Basic reading capabilities added for dAmn.
+        * Still only in a debugging format for the dAmn connection.
+        * Successfully received a handshake!
+        * Got our first dAmn event (packet)!
+        
+    Build 12 (16112008-185123) Mission Control
+        * Managed to open a connection to dAmn on startup!
+        * Now grabs authtoken autonomously!
+        * Sends a handshake to dAmn!
+        * Commented more places again...
+        
+    Build 11 (16112008-172049) Breaching Concepts
+        * Fixed some bugs in the events class.
+        * Got a proof of concept for the events system!
+        * Added more comments around the place.
+        
+    Build 10 (16112008-160000) Breaching Concepts
+        * Finished main Event data object.
+        
+    Build 9 (16112008-154023) Breaching Concepts
+        * Main event handling class near completed. Possibly final.
+        * Added a few comments here and there.
+    
+    Build 8 (16112008-131334) Breaching Concepts
+        * Started touching on the ideas of event rules.
+        * Started implementation of event rules.
+    
+    Build 7 (16112008-030916) Early Bird
+        * Added function find() to user groups base class.
+        
+    Build 6 (15112008-001055) Early Bird
+        * Core class now has method "login".
+        * Added args() to misc_lib.
+        * Commented core class slightly.
+        * Removed .command file until I can be bothered to implement the CLI properly.
+        
+    Build 5 (13112008-175148) Early Bird
+        * Updated dAmn capabilities
+        
+    Build 4 (13112008-125710) Implementations
+        * Reorganised the dAmn handling features slightly.
+        * Looking to implement everything more fully.
+        
+    Build 3 (13112008-034654) Initial Experiment
+        * Changed bot info structure in the main class.
+        
+    Build 2 (13112008-013838) Initial Experiment
+        * Created a basic user groups system which will be used for authenticating users when accessing commands.
+        ** This idea was stolen from discussions with infinity0.
+        * Changed the startup messages given by the core class.
+    
+    Build 1 (12112008-172145) Initial Experiment
+        * VERY basic system. Considered a base to build on. Authtoken retrieval works around SSL using built-in processes.
+        

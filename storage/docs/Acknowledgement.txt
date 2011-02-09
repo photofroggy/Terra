@@ -1,0 +1,46 @@
+Terra 1 Beta Preview - photofroggy
+Acknowledgements
+
+	Terra is a bot developed by myself (photofroggy), alone,
+	as a personal project. There have, however, been many people
+	who have provided me help, guidance and advice in different
+	areas when developing this bot. This is to acknowledge those
+	people for their help and advice.
+	
+	- electricnet
+	
+		This guy provided inspiration through his own Python bot
+		known as Futurism. Simplicity is always key! Unfortunately
+		I cannot allow myself to make certain things as simple as he
+		does.
+	
+	- infinity0
+	
+		Infinity0 has inspired a few small ideas which I have used,
+		and discussions with him also inspired the user groups system
+		which is used in Terra.
+	
+	- ManjyomeThunder
+	
+		He made me lose the game.
+		
+		
+									... bastard.
+								
+	- philo23
+	
+		Good ol' Phil! Philo helped me find several bugs by testing
+		things out for me. His feedback was invaluable!
+	
+	- Rhyk and Frozen-Jakalope
+	
+		These two helped in testing Terra on other operating systems.
+		As a result of this they also found some bugs. Thanks!
+	
+	- Users from #Python on irc.freenode.net
+	
+		These people helped me in the ways of Python! They are a great
+		help, and it is a pleasure to talk to them. Various users were
+		really helpful, some of them stuck out. Unfortunately I can't
+		specifically remember the people who have helped me in the
+		channel, but there are a fair few of them. Thank you very much!

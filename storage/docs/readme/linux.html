@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>Terra 1 - Linux</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+        <div class="wrap">
+            <ul class="topinfo">
+                <li>Version: <a href="#">1 Beta Preview</a>,</li>
+                <li>Author: <a href="http://photofroggy.deviantart.com/">photofroggy</a>,</li>
+                <li>License: <a href="http://www.gnu.org/licenses/gpl.html">GNU GPL v3.0+</a></li>
+            </ul>
+            <div class="body">
+                <h1 class="top"><a href="../../../README.html">Terra 1 </a>&mdash; Linux</h1>
+                <ul class="nav">
+                    <li><a href="../../../README.html">Terra 1</a> &raquo;</li>
+                    <li><a href="../../../README.html#setup">Setup</a> &raquo;</li>
+                    <li>Linux</li>
+                </ul>
+                <div>
+                    <h2>Welcome<em>!</em></h2>
+                    <p>
+                        Welcome to the Linux setup page! This page details how to get Terra working
+                        properly on a computer using a distribution of Linux. This particular guide was
+                        written <strong>based on the Ubuntu distribution</strong> of Linux, but the
+                        instructions may be similar on other distributions.
+                    </p>
+                    <h2>Instructions</h2>
+                    <p>
+                        I have tried to make the setup instructions as easy to follow as possible. If you
+                        get stuck, feel free to ask someone for help, but keep in mind that you probably shouldn't
+                        be using the bot if you can't get it working following the provided instructions.
+                    </p>
+                    <dl>
+                        <dt><a name="install_python"></a>
+                            1 <em>&mdash;</em> Install Python</dt>
+                        <dd>
+                            <p>
+                                Python 3.0 or higher is required to run Terra on Linux. Please note, you should not be required
+                                to set up Python 3 as your default Python installation. To install Python 3, open up the terminal
+                                and type the following command:
+                                <code>sudo apt-get install python3</code>
+                            </p><a name="split"></a>
+                            <p>
+                                This may differ on different distributions of Linux!
+                            </p>
+                        </dd>
+                        <dt><a name="download_terra"></a>
+                            2 <em>&mdash;</em> Download Terra</dt>
+                        <dd>
+                            <p>
+                                Now, you must download Terra. If you are reading this file, it is likely that you have already
+                                done so, but just incase you haven't, you can get the latest version of Terra at the website
+                                linked below:
+                            <code><a href="http://www.Botdom.com/wiki/Terra">Terra's Botdom Wiki Page</a></code>
+                            </p>
+                        </dd>
+                        <dt><a name="extract_files"></a>
+                            3 <em>&mdash;</em> Extract Files</dt>
+                        <dd>
+                            <p>
+                                Before you can actually get Terra working, you need to extract the files from the zip file you
+                                just downloaded. To do this, use the following command in the terminal:
+                                <code>unzip &lt;downloaded file&gt; -d &lt;destination&gt;</code>
+                            </p><a name="split"></a>
+                            <p>
+                                Where <em>&lt;downloaded file&gt;</em> is the full pathname of the file you just downloaded, and
+                                <em>&lt;destination&gt;</em> is the directory you want to extract the files to.
+                            </p><p>
+                                For example, if you downloaded the file to <em>~/Downloads</em> and wanted to extract
+                                the files to <em>~/Desktop</em>, then the command may look something like this:
+                                <code>unzip ~/Downloads/Terra_1.zip -d ~/Desktop</code>
+                            </p>
+                        </dd>
+                        <dt><a name="change_directoy"></a>
+                            4 <em>&mdash;</em> Changing Directory</dt>
+                        <dd>
+                            <p>
+                                Before you can do anything else, it is a good idea to change your working directory to the bot's
+                                home folder. To do this, you can type the following command into the terminal:
+                                <code>cd &lt;bot folder&gt;</code>
+                            </p><a name="split"></a><p>
+                                Where <em>&lt;bot folder&gt;</em> is the directory you extracted your files to in <a href="#extract_files">step
+                                3</a>, plus the sub-folder <em>Terra</em>. For example, if you extracted your files to <em>~/Desktop</em>,
+                                then the command may look something like this:
+                                <code>cd ~/Desktop/Terra</code>
+                            </p>
+                        </dd>
+                        <dt><a name="run_terra"></a>
+                            5 <em>&mdash;</em> Run Terra</dt>
+                        <dd>
+                            <p>
+                                After you have changed directories to the bot's folder, you can start it up! To do this, you will
+                                need to type the following command into your terminal:
+                                <code>python3 Launch.py</code>
+                            </p><a name="split"></a><p>
+                                If everything went according to plan, you should see something similar to the image below.
+                            </p>
+                        </dd>
+                    </dl>
+                    <img src="http://download.botdom.com/32na5/firstrun-linux.png" height="490" width="689" alt="Terra First Run (Linux)" /> 
+                    <dl>
+                        <dd>
+                            <p>
+                                To complete the setup process, you will have to give Terra the information it asks for. After that,
+                                you can run Terra again in the same way, and it won't ask you for anything!
+                            </p>
+                        </dd>
+                    </dl>
+                    <h2>Congratulations<em>!</em></h2>
+                    <p>
+                        If everything went correctly, you now have a copy of Terra running on your computer!
+                    </p><p>
+                        As a final note, running other files ending in <em>.py</em> the same way you did in <a href="#run_terra">step 5</a>
+                        will allow you to do different things. For examle, running <strong>Menu.py</strong>
+                        will bring up a main menu, allowing you to pick from a set of options.
+                    </p><p>
+                        Thanks for reading, and have fun!
+                    </p>
+                </div>
+                <blockquote class="disclaimer">
+                    <p>
+                        Terra is in no way affiliated with or endorsed by deviantART.com.
+                        This is not an official service of deviantART.com. This is an independent
+                        project created by photofroggy:
+                            &lt;http://photofroggy.deviantart.com&gt;
+                    </p><p>
+                        THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
+                        APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+                        HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
+                        OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+                        THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+                        PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+                        IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+                        ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+                    </p>
+                </blockquote>
+            </div>
+        </div>
+    </body>
+</html>

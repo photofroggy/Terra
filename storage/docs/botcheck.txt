@@ -1,0 +1,2 @@
+botresponse: user_requesting_info bot_owner bot_name bot_version md5_signature bot_trigger
+string sig = md5((bot.Trigger + sender + bot.Username).ToLower());

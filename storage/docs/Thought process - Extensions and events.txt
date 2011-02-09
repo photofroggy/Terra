@@ -1,0 +1,94 @@
+
+		This file is just to describe how I came to decide to use the current
+	extension and event system found in Terra. Other "Thought process" files
+	should show the same sort of thing for different parts of the bot.
+	
+		Now, the extension system is the most defining feature in the core of
+	a bot these days, most other bots will call it a module system, but Python
+	already has modules, so that's why I decided to call mine an extension
+	system. Extensions are scripts that extend the functionality of the bot.
+		
+		In older bots, there were no modular extension systems. Quite often you
+	could only make command files, or put a script in a specific folder to use
+	a certain "event". This is not very flexible, and not very productive.
+		
+		Thankfully, a more modular extension system was introduced to dAmn bots.
+	This was actually reintroduced by infinity0 and his first bot, xbot. The first
+	bot, however, to feature a modular extension system was pyBot. Unfortunately,
+	this bot was very obscure.
+		
+		So, infinity0 gave the idea a "formal" introduction. This made for great
+	progress, and just made sense, but the module systems developed were all very
+	similar, and were quite confusing at times. They could even be quite demanding
+	in resources. They were good, but not perfect.
+		
+		When designing my extension system, I wanted everything to be easy and simple,
+	but having it too simple would limit things too much. So, how do I get a good
+	balance?
+		
+		Well, I wanted to try and make it possible to configure things in a really
+	simple way. I wanted extensions to be able to hook events with one method, and
+	use the same method to hook commands. After some thinking, it is quite clear that
+	commands are still events, they just need to be handled differently.
+		
+		So, I had established that extensions should use the same method to hook events
+	and commands. What would be a good name for the method? What would be a good syntax?
+	Well, in most event systems for completely unrelated APIs around the internet, the
+	method to hook events is usually called "bind", and they create "event bindings".
+	This makes sense, as the method is "bound" to the event.
+		
+		Great, I have a name for the methods, bind and unbind! But the syntax has not been
+	sorted yet. It seems to make sense that the method comes first, then the event name.
+	That's almost everything you'd usually need to bind events in a bot, but how would
+	you give commands a name with only two parameters? Well, that's where the options
+	parameter comes in. The third option should define a list of options, these options
+	are checked by the system whenever an event needs handling. For commands, the first
+	option could be the name of the command, and the second option could be the user
+	group that has access to the command. So, at the moment we have this syntax:
+	
+		self.bind(self.method, 'event', options=[])
+	
+	To hook a command called "foo", I would, in theory, do the following:
+	
+		self.bind(self.method, 'command', ['foo'])
+	
+	Great! And having event options means that event bindings can be much more specific.
+	Extensions can now bind events that trigger only if received from a certain channel,
+	or if sent by a specific user.
+		
+		This is good, this is great! But there should still be one more thing. This isn't
+	exactly needed, but it is nice to have. The fourth and final parameter is optional,
+	as the third parameter is optional. The fourth parameter should be a string providing
+	information about the binding. Just a short description or something. This means I can
+	do something like the following:
+	
+		self.bind(self.method, 'command', ['foo'], 'command foo is a bar')
+	
+	The method "bind" is defined as so:
+	
+		def bind(self, method, event, options=None, *additional)
+	
+	Excellent, now we're talking! The extensions have a nice API to work with!
+		
+		The events system, however, still doesn't discriminate between normal events, and
+	the command event. I needed a way to handle different events differently, while not
+	giving too much overhead by having to have a separate way for the events system to
+	handle every event. This would be too much. What I needed was a way to extend the events
+	system, and allow the extensions of the events system to handle event bindings their own
+	way.
+		
+		This is where the idea for an event ruleset comes in. I thought that it would be good
+	to have a class of some sort that has its own methods used to handle bindings. Instances
+	of these classes should be kept in a dict in the events system. With the event rulesets,
+	I should be able to make a class that handles command bindings exclusively.
+		
+		The idea for the event ruleset is very simple, but extremely flexible. It means that
+	they events system itself is extensible. You can effectively create your own event processing
+	for the system, so every extension can benefit from the modifications.
+		
+		As a result of these ideas, the events system is quite robust, and quite large, but it
+	would have been much much bigger without the rulesets, and it would have been more awkward to
+	make commands too.
+	
+	
+			-		photofroggy

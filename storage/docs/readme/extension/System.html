@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+    <head>
+        <title>Terra 1 - Extension - System</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="../style.css" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+        <div class="wrap">
+            <ul class="topinfo">
+                <li>Version: <a href="../../../../README.html">Terra 1</a>,</li>
+                <li>Author: <a href="http://photofroggy.deviantart.com/">photofroggy</a>,</li>
+                <li>License: <a href="http://www.gnu.org/licenses/gpl.html">GNU GPL v3.0+</a></li>
+            </ul>
+            <div class="body">
+                <h1 class="top"><a href="index.html#extensions">Extension Manual</a></h1>
+                <ul class="nav">
+                    <li><a href="../../../../README.html">Terra 1</a> &raquo;</li>
+                    <li><a href="index.html#extensions">Extension</a> &raquo;</li>
+                    <li>System</li>
+                </ul>
+                <div>
+                    <h2>Extension: System</h2> 
+                    <blockquote class="basic"> 
+                        <p> 
+                            <dfn>Included in:</dfn> All packages
+                            <br/> 
+                            <dfn>Default status:</dfn> On
+                        </p> 
+                    </blockquote> 
+                    <p> 
+                        The System extension should be considered to be a core part of the bot. The extension
+                        provides a set of commands which are needed to take full control of some of the core
+                        features of your bot. There are also commands to show information about different things,
+                        including the environment that the bot is running in. Many of the commands included in
+                        this extension are Owner only, as you can do quite a lot with them.
+                    </p><p> 
+                        This extension is contained in the <em>"System.py"</em> file, located in the folder
+                        <em>~/extensions</em>, meaning it is loaded into the bot on startup.
+                    </p> 
+                    <h3>Commands</h3> 
+                    <p> 
+                        Command names are shown <var>like this</var>, and optional arguments are shown <cite>[like this]</cite>.
+                    </p> 
+                    <ul class="cmds"> 
+                        <li>quick ref:</li> 
+                        <li><a href='#about'>about</a>,</li> 
+                        <li><a href='#build'>build</a>,</li> 
+                        <li><a href='#system'>system</a>,</li> 
+                        <li><a href='#uptime'>uptime</a>,</li> 
+                        <li><a href='#extensions'>extensions</a>,</li> 
+                        <li><a href='#extension'>extension</a>,</li> 
+                        <li><a href='#ctrig'>ctrig</a>,</li> 
+                        <li><a href='#autojoin'>autojoin</a>,</li> 
+                        <li><a href='#user'>user</a>,</li> 
+                        <li><a href='#users'>users</a>,</li> 
+                        <li><a href='#group'>group</a>,</li> 
+                        <li><a href='#groups'>groups</a>,</li> 
+                        <li><a href='#eval'>eval</a>,</li> 
+                        <li><a href='#exec'>exec</a>,</li> 
+                        <li><a href='#sudo'>sudo</a>,</li> 
+                        <li><a href='#quit'>quit</a>,</li> 
+                        <li><a href='#restart'>restart</a></li> 
+                    </ul> 
+                    <dl class="cmds"> 
+                        <dt><a name='about'></a><b>!<var>about</var></b></dt> 
+                        <dd> 
+                            <p> 
+                                The about command! This simply shows very basic information
+                                about the bot.
+                            </p> 
+                        </dd> 
+                        <dt><a name='build'></a><b>!<var>build</var></b></dt> 
+                        <dd> 
+                            <p> 
+                                This command shows some brief information about the build
+                                the bot is running on.
+                            </p> 
+                        </dd> 
+                        <dt><a name='system'></a><b>!<var>system</var></b></dt> 
+                        <dd> 
+                            <p> 
+                                The system command shows quite a bit more information than
+                                the previous two commands. This command will show you information
+                                about the bot, the build it is using, and the environment it
+                                is running in.
+                            </p> 
+                        </dd> 
+                        <dt><a name='uptime'></a><b>!<var>uptime</var></b></dt> 
+                        <dd> 
+                            <p> 
+                                Use this command to see how long the bot has been running for.
+                            </p> 
+                        </dd> 
+                        <dt><a name='extensions'></a><b>!<var>extensions</var></b></dt> 
+                        <dd> 
+                            <p> 
+                                This command shows you a list of the extensions currently loaded
+                                into the bot.
+                            </p> 
+                        </dd> 
+                        <dt><b>!<var>extensions</var> reload</b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                Use this command to reload all of the extensions currently loaded in the bot.
+                            </p> 
+                        </dd> 
+                        <dt><a name='extension'></a><b>!<var>extension</var> [name]</b></dt> 
+                        <dd> 
+                            <p> 
+                                You can use this command to view information about an extension, where <em>[name]</em> 
+                                is the name of the extension you wish to view information for. For example, typing
+                                <em>!extension dAmn Manager</em> shows information about the extension "dAmn Manager".
+                            </p> 
+                        </dd> 
+                        <dt><a name='ctrig'></a><b>!<var>ctrig</var> [trigger]</b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                Use this command to change your bot's trigger character, where <em>[trigger]</em> is
+                                the desired trigger character. For example, to change the bot's trigger character to ":", type
+                                <em>!ctrig :</em>.
+                            </p> 
+                        </dd> 
+                        <dt><a name='autojoin'></a><b>!<var>autojoin</var></b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                This simply shows the channels that the bot attempts to join when it has connected to dAmn.
+                            </p> 
+                        </dd> 
+                        <dt><b>!<var>autojoin</var> add <cite>[channel]</cite></b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                Use this command to add a channel to the bot's list of autojoin channels, where <em>[channel]</em> 
+                                is the name of the channel you wish to add to the list. For example, type <em>!autojoin add #Botdom</em> 
+                                to add #Botdom to the list of autojoin channels.
+                            </p><p> 
+                                If <em>[channel]</em> is not provided, then the channel you used the command in will be used.
+                            </p> 
+                        </dd> 
+                        <dt><b>!<var>autojoin</var> remove <cite>[channel]</cite></b></dt> 
+                        <dd>
+                            <p>
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                Use this command to remove a channel from the bot's list of autojoin channels, where <em>[channel]</em> 
+                                is the name of the channel you wish to remove from the list. For example, type <em>!autojoin remove #Botdom</em> 
+                                to remove #Botdom from the list of autojoin channels.
+                            </p><p> 
+                                If <em>[channel]</em> is not provided, then the channel you used the command in will be used.
+                            </p> 
+                        </dd> 
+                        <dt><a name='user'></a><b>!<var>user</var> list</b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for Operators and up only.</b></i> 
+                                <br/> 
+                                This command shows a list of the users in the bot's user groups.
+                            </p> 
+                        </dd> 
+                        <dt><b>!<var>user</var> add [user] [group]</b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for Operators and up only.</b></i> 
+                                <br/> 
+                                Use this command to add a user to a user group in the bot, where <em>[user]</em> is the name of the
+                                user you wish to add, and <em>[group]</em> is the name of the user group you want to add them to.
+                                For example, to add <em>photofroggy</em> to the user group <em>Operators</em>, type <em>!user add
+                                photofroggy Operators</em>.
+                            </p> 
+                        </dd> 
+                        <dt><b>!<var>user</var> remove [user]</b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for Operators and up only.</b></i> 
+                                <br/> 
+                                Use this command to remove a user from the bot's user groups, where <em>[user]</em> is the name of the
+                                user you wish to remove, For example, to remove <em>photofroggy</em>, type <em>!user remove photofroggy</em>.
+                            </p> 
+                        </dd> 
+                        <dt><a name='users'></a><b>!<var>users</var></b></dt> 
+                        <dd> 
+                            <p> 
+                                This is the same as doing <em>!user list</em>, but this command is open to Guests and above.
+                            </p> 
+                        </dd> 
+                        <dt><a name='group'></a><b>!<var>group</var> list</b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                This command shows a list of the bot's user groups
+                            </p> 
+                        </dd> 
+                        <dt><b>!<var>group</var> add [group]</b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                Use this command to add a user group to the bot's user group system, where <em>[group]</em> is the desired
+                                name for the user group. For example, to add user group <em>Biscuits</em>, type <em>!group add Biscuits</em>.
+                            </p> 
+                        </dd> 
+                        <dt><b>!<var>group</var> delete [group]</b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                Use this command to delete a user group in the bot's user group system, where <em>[group]</em> is the desired
+                                name for the user group. For example, to add user group <em>Biscuits</em>, type <em>!group add Biscuits</em>.
+                            </p> 
+                        </dd> 
+                        <dt><b>!<var>group</var> alias add [group] [alias]</b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                You can use this command to add an alias for a user group, where <em>[group]</em> is the name of the user group
+                                you want to add an alias to, and <em>[alias]</em> is the alias you want to add to the user group. For example,
+                                to give the user group "Biscuits" the alias "Digestive", type <em>!group alias add Biscuits Digestive</em>.
+                            </p> 
+                        </dd>
+                        <dt><b>!<var>group</var> alias remove [group]</b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                You can use this command to remove a user group's alias, where <em>[group]</em> is the name of the user group
+                                you want to remove the alias for, or the alias itself. For example, to remove user group "Biscuits"'s alias
+                                "Digestive", you can type either <em>!group alias remove Biscuits</em> or <em>!group alias remove Digestive</em>.
+                            </p> 
+                        </dd>
+                        <dt><b>!<var>group</var> shift up [group]</b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                This command relates to the order in which the user groups are displayed when using the "!users" command. This command would
+                                move <em>[group]</em> up in the list by one place, where <em>[group]</em> is the name of the user group you want to move.
+                            </p> 
+                        </dd> 
+                        <dt><b>!<var>group</var> shift down [group]</b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                This command is the opposite of !group shift up. This command would move <em>[group]</em> down in the list by one place, where
+                                <em>[group]</em> is the name of the user group you want to move.
+                            </p> 
+                        </dd> 
+                        <dt><b>!<var>group</var> defaults</b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                This command resets all user group data! Use at your own risk!
+                            </p> 
+                        </dd> 
+                        <dt><a name='groups'></a><b>!<var>groups</var></b></dt> 
+                        <dd> 
+                            <p> 
+                                This is the same as using <em>!group list</em>, but this command is open to Guests and above.
+                            </p> 
+                        </dd> 
+                        <dt><a name='eval'></a><b>!<var>eval</var> [expression]</b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                This command evaluates a Python expression, and returns the result, where <em>[expression]</em> is a valid Python expression.
+                            </p> 
+                        </dd> 
+                        <dt><a name='exec'></a><b>!<var>exec</var> [code]</b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                This command is similar to !eval, but it can execute valid Python codes as opposed to evaluating an expression
+                                , where <em>[code]</em> is valid Python code.
+                            </p> 
+                        </dd> 
+                        <dt><a name='sudo'></a><b>!<var>sudo</var> [user] [command] <cite>[command arguments]</cite></b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                This command lets you execute a bot command on someone else's behalf, where <em>[command]</em> is the name of the command
+                                to execute, and <em>[command arguments]</em> are any arguments you want to pass to the command. As an example, to execute
+                                the !build command as "photofroggy", type <em>!sudo photofroggy about</em>.
+                            </p> 
+                        </dd> 
+                        <dt><a name='quit'></a><b>!<var>quit</var></b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                This command shuts down the bot and closes the window it is running in, without warning!
+                            </p> 
+                        </dd> 
+                        <dt><b>!<var>quit</var> soft</b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                This command shuts down the bot, but gives the owner the option of restarting the bot from
+                                the command line/terminal.
+                            </p> 
+                        </dd> 
+                        <dt><a name='restart'></a><b>!<var>restart</var></b></dt> 
+                        <dd> 
+                            <p> 
+                                <i><b>This command is for the Owner only.</b></i> 
+                                <br/> 
+                                This command restarts the bot!
+                            </p> 
+                        </dd> 
+                    </dl> 
+                </div>
+                <blockquote class="disclaimer">
+                    <p>
+                        Terra is in no way affiliated with or endorsed by deviantART.com.
+                        This is not an official service of deviantART.com. This is an independent
+                        project created by photofroggy:
+                            &lt;http://photofroggy.deviantart.com&gt;
+                    </p><p>
+                        THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
+                        APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+                        HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
+                        OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+                        THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+                        PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+                        IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+                        ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+                    </p>
+                </blockquote>
+            </div> 
+		</div> 
+	</body> 
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+    <head>
+        <title>Terra 1 - Extension - dAmn</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="../style.css" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+        <div class="wrap">
+            <ul class="topinfo">
+                <li>Version: <a href="../../../../README.html">Terra 1</a>,</li>
+                <li>Author: <a href="http://photofroggy.deviantart.com/">photofroggy</a>,</li>
+                <li>License: <a href="http://www.gnu.org/licenses/gpl.html">GNU GPL v3.0+</a></li>
+            </ul>
+            <div class="body">
+                <h1 class="top"><a href="../../../../README.html">Terra 1 </a>&mdash; <a href="index.html#extensions">Extension </a>
+                    &mdash; dAmn</h1>
+                <ul class="nav">
+                    <li><a href="../../../../README.html">Terra 1</a> &raquo;</li>
+                    <li><a href="index.html#extensions">Extension</a> &raquo;</li>
+                    <li>System</li>
+                </ul>
+                <div>
+                    <h2>Extension: dAmn</h2> 
+                    <blockquote class="basic"> 
+                        <p> 
+                            <dfn>Included in:</dfn> All packages
+                            <br/> 
+                            <dfn>Default status:</dfn> On
+                        </p> 
+                    </blockquote> 
+                    <p>
+                        The dAmn extension is an important extension, but is not required. The extension provides
+                        a set of commands that let you make your bot interact with dAmn, and also lets you view
+                        information about the bot's connection to dAmn. It would probably be best to keep this one
+                        loaded in your bot, as you may find it useful at some point, and it's always helpful to
+                        play around with it, just to see how certain things work.
+                    </p><p>
+                        This extension is contained in the <em>"dAmn.py"</em> file, located in the folder
+                        <em>~/extensions</em>, meaning it is loaded into the bot on startup.
+                    </p>
+                    <h3>Commands</h3> 
+                    <p> 
+                        Command names are shown <var>like this</var>, and optional arguments are shown <cite>[like this]</cite>.
+                    </p> 
+                    <ul class="cmds">
+                        <li>quick ref:</li>
+                        <li><a href="#say">say</a>,</li>
+                        <li><a href="#action">action</a>,</li>
+                        <li><a href="#me">me</a>,</li>
+                        <li><a href="#join">join</a>,</li>
+                        <li><a href="#part">part</a>,</li>
+                        <li><a href="#kick">kick</a>,</li>
+                        <li><a href="#promote">promote</a>,</li>
+                        <li><a href="#demote">demote</a>,</li>
+                        <li><a href="#ban">ban</a>,</li>
+                        <li><a href="#unban">unban</a>,</li>
+                        <li><a href="#get">get</a>,</li>
+                        <li><a href="#set">set</a>,</li>
+                        <li><a href="#title">title</a>,</li>
+                        <li><a href="#topic">topic</a>,</li>
+                        <li><a href="#admin">admin</a>,</li>
+                        <li><a href="#kill">kill</a>,</li>
+                        <li><a href="#raw">raw</a>,</li>
+                        <li><a href="#refresh">refresh</a>,</li>
+                        <li><a href="#ping">ping</a>,</li>
+                        <li><a href="#channels">channels</a>,</li>
+                        <li><a href="#connected">connected</a>,</li>
+                        <li><a href="#disconnects">disconnects</a>,</li>
+                        <li><a href="#viper">viper</a>,</li>
+                        <li><a href="#whois">whois</a>,</li>
+                        <li><a href="#members">members</a></li>
+                    </ul>
+                    <dl class="cmds">
+                        <dt><a name="say"></a><b>!<var>say</var> <cite>[channel]</cite> [message]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Use this command to make the bot say something, where <em>[channel]</em>
+                                is the channel to say the message in, and <em>[message]</em> is the
+                                message to say.
+                            </p><p>
+                                <em>[channel] must</em> start with either an @ or a # to be recognized
+                                as a channel name. If it does not start with an @ or a #, then it will
+                                be included as part of the message. If <em>[channel]</em> is not provided,
+                                then the message will be sent to the room you used to command in.
+                            </p><p>
+                                As an example <em>!say #Botdom Hello there!</em> would make the bot say
+                                "Hello there!" in the channel "#Botdom", whereas <em>!say Botdom Hello there!</em>
+                                would make the bot say "Botdom Hello there!" in the channel you used the
+                                command in.
+                                <br/>
+                                <i><b>Note:</b> The bot must be in the channel defined by [channel] for this
+                                command to work properly.</i>
+                            </p><p>
+                                Also keep in mind that using an @ signifies a <em>private chat</em> when using
+                                Terra.
+                            </p><p>
+                                The above applies to all commands where <em>[channel]</em> appears as the first
+                                parameter, if it is optional, of course.
+                            </p>
+                        </dd>
+                        <dt><a name="action"></a><b>!<var>action</var> <cite>[channel]</cite> [action]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Use this command to make your bot perform an action in a channel. This is
+                                pretty much the same as <em>!say</em>, but this sends an action rather
+                                than a normal message. It's like making the bot use <em>/me</em> on dAmn.
+                            </p>
+                        </dd>
+                        <dt><a name="me"></a><b>!<var>me</var> <cite>[channel]</cite> [action]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                This is an alias for <em>!action</em>.
+                            </p>
+                        </dd>
+                        <dt><a name="join"></a><b>!<var>join</var> [channel]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Use this command to make your bot join a channel, where <em>[channel]</em>
+                                is the name of the channel you want your bot to join.
+                            </p>
+                        </dd>
+                        <dt><a name="part"></a><b>!<var>part</var> <cite>[channel]</cite></b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                This command makes the bot leave a room, where <em>[channel]</em> is the
+                                name of the channel you want the bot to leave. If <em>[channel]</em> is not
+                                provided, then the bot will leave the channel the command was used in.
+                            </p>
+                        </dd>
+                        <dt><a name="kick"></a><b>!<var>kick</var> <cite>[channel]</cite> [user] <cite>[reason]</cite></b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Kick a user from a channel, where <em>[user]</em> is the name of the user
+                                you want to kick. If <em>[reason]</em> is provided, the bot will attempt
+                                to kick the user with <em>[reason]</em> as the reason. For example, <em>
+                                !kick photofroggy</em> would kick photofroggy without a reason, while
+                                <em>!kick photofroggy stop spamming</em> would kick photofroggy with
+                                "stop spamming" as the reason.
+                            </p>
+                        </dd>
+                        <dt><a name="promote"></a><b>!<var>promote</var> <cite>[channel]</cite> [user] <cite>[privilege</cite> class]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Promote a user in a channel, where <em>[user]</em> is the name of the user
+                                to promote, and <em>[privilege class]</em> is the name of the privilege
+                                class to promote them to. If <em>[privilege class]</em> is not provided,
+                                the user will be promoted by one privclass.
+                            </p>
+                        </dd>
+                        <dt><a name="demote"></a><b>!<var>demote</var> <cite>[channel]</cite> [user] <cite>[privilege</cite> class]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                This is the opposite of <em>!promote</em>.
+                            </p>
+                        </dd>
+                        <dt><a name="ban"></a><b>!<var>ban</var> <cite>[channel]</cite> [user]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Use this command to ban a user from a channel, where <em>[user]</em> is the
+                                name of the user you want to ban.
+                            </p>
+                        </dd>
+                        <dt><a name="unban"></a><b>!<var>unban</var> <cite>[channel]</cite> [user]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                This is the opposite of <em>!ban</em>
+                            </p>
+                        </dd>
+                        <dt><a name="get"></a><b>!<var>get</var> <cite>[channel]</cite> [property]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Use this command to retrieve a channel's property. Argument <em>[property]</em>
+                                has to be either "title", "topic", "privclasses" or "members", or the bot will
+                                receive an error from dAmn. The bot will not display a message on dAmn after
+                                using this command, but you can check the console to see whether it was successful
+                                or not.
+                            </p>
+                        </dd>
+                        <dt><a name="set"></a><b>!<var>set</var> <cite>[channel]</cite> [property] [value]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Use this command to set a channel's property. Argument <em>[property]</em>
+                                has to be either "title" or "topic", or the bot will receive an error from dAmn.
+                                Argument <em>[value]</em> should be the value you want to give the property.
+                                For example, <em>!set topic Hello, world!</em> would set the topic to "Hello, world!".
+                            </p>
+                        </dd>
+                        <dt><a name="title"></a><b>!<var>title</var> <cite>[channel]</cite></b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Use this command to view the title in <em>[channel]</em>!
+                            </p>
+                        </dd>
+                        <dt><b>!<var>title</var> <cite>[channel]</cite> set [title]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Use this command to set the title in <em>[channel]</em> to <em>[title]</em>!
+                            </p>
+                        </dd>
+                        <dt><b>!<var>title</var> <cite>[channel]</cite> append [text]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Use this command to append [text] to the title in <em>[channel]</em>!
+                            </p>
+                        </dd>
+                        <dt><b>!<var>title</var> <cite>[channel]</cite> replace [search] [replace]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Use this command to replace [search] with [replace] in the title
+                                in <em>[channel]</em>!
+                            </p>
+                        </dd>
+                        <dt><b>!<var>title</var> <cite>[channel]</cite> clear</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Use this command to clear the title in <em>[channel]</em>!
+                            </p>
+                        </dd>
+                        <dt><a name="topic"></a><b>!<var>topic</var> <cite>[channel]</cite></b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Use this command to view the topic in <em>[channel]</em>!
+                            </p>
+                        </dd>
+                        <dt><b>!<var>topic</var> <cite>[channel]</cite> set [topic]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Use this command to set the topic in <em>[channel]</em> to <em>[topic]</em>!
+                            </p>
+                        </dd>
+                        <dt><b>!<var>topic</var> <cite>[channel]</cite> append [text]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Use this command to append [text] to the topic in <em>[channel]</em>!
+                            </p>
+                        </dd>
+                        <dt><b>!<var>topic</var> <cite>[channel]</cite> replace [search] [replace]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Use this command to replace [search] with [replace] in the topic
+                                in <em>[channel]</em>!
+                            </p>
+                        </dd>
+                        <dt><b>!<var>topic</var> <cite>[channel]</cite> clear</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Use this command to clear the topic in <em>[channel]</em>!
+                            </p>
+                        </dd>
+                        <dt><a name="admin"></a><b>!<var>admin</var> <cite>[channel]</cite> [command]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Perform an admin command in <em>[channel]</em>, where <em>[command]</em> is the
+                                command you want to perform. Be careful with this one. It is the same as doing
+                                <em>/admin</em> from the web client.
+                            </p>
+                        </dd>
+                        <dt><a name="kill"></a><b>!<var>kill</var> [user] <cite>[reason]</cite></b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Owner</b></i>
+                                <br/>
+                                Use this command to kill a user's connection, where <em>[user]</em> is the name of
+                                the user whose connection you want to kill. Providing <em>[reason]</em> is similar
+                                to providing a reason when kicking a user from a channel. This command will only
+                                work properly if your bot has privileges to kill connections. In most cases, your
+                                bot does not have this privilege.
+                            </p>
+                        </dd>
+                        <dt><a name="raw"></a><b>!<var>raw</var> [packet]</b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                This command can be used to send a raw packet to dAmn! Only use this command if you
+                                know what you are doing.
+                            </p>
+                        </dd>
+                        <dt><a name="refresh"></a><b>!<var>refresh</var> <cite>[channel]</cite></b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                You can use this to make the bot disconnect from dAmn, and then reconnect. The bot
+                                will display a message on dAmn before refreshing its dAmn connection. If <em>[channel]</em>
+                                is provided, the bot will attempt to display this message in the channel defined.
+                            </p>
+                        </dd>
+                        <dt><a name="ping"></a><b>!<var>ping</var></b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Operators and up</b></i>
+                                <br/>
+                                Use this command to test the speed of the bot's connection to dAmn.
+                            </p>
+                        </dd>
+                        <dt><a name="channels"></a><b>!<var>channels</var> <cite>[channel]</cite></b></dt>
+                        <dd>
+                            <p>
+                                <i><b>Members and up</b></i>
+                                <br/>
+                                You can use this command to view a list of the channels that the bot is currently in.
+                                As with <em>!refresh</em>, if <em>[channel]</em> is provided, the bot will attempt
+                                to display the list in the channel defined.
+                            </p>
+                        </dd>
+                        <dt><a name="connected"></a><b>!<var>connected</var> <cite>[channel]</cite></b></dt>
+                        <dd>
+                            <p>
+                                Use this command to see how long the bot has been connected to dAmn for.
+                            </p>
+                        </dd>
+                        <dt><a name="disconnects"></a><b>!<var>disconnects</var> <cite>[channel]</cite></b></dt>
+                        <dd>
+                            <p>
+                                Use this command to see how many times the bot has been disconnected while running.
+                            </p>
+                        </dd>
+                        <dt><a name="viper"></a><b>!<var>viper</var> <cite>[channel]</cite></b></dt>
+                        <dd>
+                            <p>
+                                View brief information about the build of dAmn Viper being used by the bot.
+                            </p>
+                        </dd>
+                        <dt><a name="whois"></a><b>!<var>whois</var> <cite>[channel]</cite> [user]</b></dt>
+                        <dd>
+                            <p>
+                                Get whois information on a user, where <em>[user]</em> is the name of the user you
+                                want to get information on.
+                            </p>
+                        </dd>
+                        <dt><a name="members"></a><b>!<var>members</var> <cite>[channel]</cite></b></dt>
+                        <dd>
+                            <p>
+                                View a list of the users in <em>[channel]</em>. If <em>[channel]</em> is not provided,
+                                then a list of the users in the channel you used the command in will be shown.
+                            </p>
+                        </dd>
+                    </dl>
+                </div>
+                <blockquote class="disclaimer">
+                    <p>
+                        Terra is in no way affiliated with or endorsed by deviantART.com.
+                        This is not an official service of deviantART.com. This is an independent
+                        project created by photofroggy:
+                            &lt;http://photofroggy.deviantart.com&gt;
+                    </p><p>
+                        THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
+                        APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+                        HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
+                        OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+                        THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+                        PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+                        IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+                        ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+                    </p>
+                </blockquote>
+            </div> 
+		</div> 
+	</body> 
+</html>
