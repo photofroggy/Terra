@@ -56,7 +56,7 @@ class Bot(ReconnectingClient):
     
     def on_token(self):
         self.user.password = None
-        if not self.session.status[0] != 1:
+        if self.session.status[0] != 1:
             return
         self.save_config()
     

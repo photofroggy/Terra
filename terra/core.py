@@ -12,15 +12,18 @@ import sys
 from reflex.data import Event
 from reflex.control import EventManager
 # terra libs
+from terra import extension
 from terra.client import Bot
 from terra.config import Settings
 from terra.config import Configure
 
 class Main:
     
-    class vinfo:
+    class info:
+        name = 'Terra'
         version = 2
         state = 'pre-alpha'
+        series = 'Legacy'
         build = 118
         stamp = '00000000-000000'
         rstamp = 0.0
@@ -47,6 +50,7 @@ class Main:
         self.log = self.conn.new_logger(showns=False)
         self.evts = EventManager(output=self.log)
         self.conn.set_evt_mgr(self.evts)
+        self.exts = extension.Manager(self.log, self.debug)
     
     def intro(self):
         self.log('** Welcome to Terra version 2!')
@@ -64,7 +68,7 @@ class Main:
         self.log('** ... load rules here.')
     
     def load_exts(self):
-        self.log('** ... load extensions here.')
+        self.exts.load_extensions(self, self.evts)
     
     def run(self):
         self.log('** Ok, that\'s everything! Let\'s go!')

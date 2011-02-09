@@ -23,8 +23,8 @@ class dAmnSock:
         name = 'dAmn Viper'
         version = 2
         state = 'RC'
-        build = 48
-        stamp = '09022011-174317'
+        build = 49
+        stamp = '09022011-220339'
         series = 'Swift'
         author = 'photofroggy'
             
@@ -428,6 +428,8 @@ class ReconnectingClient(Client):
     _connect_attempts = 0
     _connect_attempt_limit = 3
     
+    session = None
+    
     def __inst__(self):
         self.agent = 'dAmnViper (Python 3.1) ReconnectingClient/Client/dAmnSock/{0}.{1}'.format(
             self.platform.version, self.platform.build)
@@ -453,7 +455,7 @@ class ReconnectingClient(Client):
                 self.logger('~Global', '** Retrieving authtoken...', False)
                 self.get_token()
                 if self.session is None:
-                    self.logger('~Global', '>> You must provide a username and password first!', False)
+                    self.logger('~Global', '>> Insufficient login details provided.', False)
                     return
                 if self.session.status[0] != 1:
                     # Something went wrong! Maybe the user entered the wrong details?!

@@ -9,7 +9,9 @@
         * Managed to get a basic client that connects and allows configuration.
         ** Took around an hour!
         ** Seriously, dAmn Viper + Reflex = awesomeness.
-        
+        * Updated to latest build of dAmn Viper.
+        * Created a very basic extension system!
+        * Added !about and !quit commands!
 
     Build 117 (06122010-011554) Flux
         * Changed the dsp extension to use the TDS namespace for PROVIDER.
