@@ -146,7 +146,7 @@ def arguments(data=False, start=0, finish=False, separator=' ', sequence=False):
     These methods manipulate files and directories.
 '''
 
-def clean_files(dirs=['.', './terra', './terra/rules', './terra/sys_extensions', './storage', './extensions', './dAmnViper']):
+def clean_files(dirs=['.', './terra', './terra/rules', './terra/sys_extensions', './storage', './extensions', './dAmnViper', './reflex', './rules']):
     """ Removes .pyc files from given directories. """
     for dir in dirs:
         for file in os.listdir(dir):
@@ -162,4 +162,15 @@ def create_folders(folders, mode=0o755):
             os.mkdir(folder, mode)
             continue
         os.chmod(folder, mode)
+
+''' >>>>>>>>>>>>>>>> IO OPERATIONS <<<<<<<<<<<<<<<<<<<<<<<<<<
+    Just one or two methods used for IO.
+'''
+    
+def get_input(prefix='> ', empty=False):
+    while True:
+        ins = input(prefix)
+        if (len(ins) == 0 and empty) or len(ins) > 0:
+            return ins
+
 # EOF

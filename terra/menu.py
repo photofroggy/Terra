@@ -45,8 +45,8 @@ def run(args, restartable=True):
         input('>> Press enter to continue...')
         return
     if args == 'config':
-        from terra.custom import Config
-        Config()
+        from terra.config import Configure
+        Configure()
         if restartable:
             return
     if args == 'exit':
