@@ -5,6 +5,8 @@
 '''
 
 # stdlib
+import os
+import sys
 import json
 # terra's stdlib
 from terra.misc_lib import get_input
@@ -30,6 +32,8 @@ class Settings:
         self.load()
     
     def load(self):
+        if not os.path.exists(self.file):
+            return
         file = open(self.file, 'r')
         data = json.loads(file.read())
         file.close()

@@ -1,0 +1,5 @@
+20:02:57| ** Join #Botdom: "ok".
+20:02:57| ** Got topic for #Botdom.
+20:02:57| ** Got title for #Botdom.
+20:02:57| ** Got privclasses for #Botdom.
+20:02:57| ** Got members for #Botdom.

@@ -433,6 +433,7 @@ class ReconnectingClient(Client):
             self.platform.version, self.platform.build)
         self._received = time.strftime('%Y-%m-%d')
         self._connect_attemps = 0
+        self.session = None
     
     def nullflags(self):
         Client.nullflags(self)
@@ -451,6 +452,9 @@ class ReconnectingClient(Client):
                 # If we don't have an authtoken, try and grab one!
                 self.logger('~Global', '** Retrieving authtoken...', False)
                 self.get_token()
+                if self.session is None:
+                    self.logger('~Global', '>> You must provide a username and password first!', False)
+                    return
                 if self.session.status[0] != 1:
                     # Something went wrong! Maybe the user entered the wrong details?!
                     self.logger('~Global', '>> Failed to get an authtoken.', False)

@@ -11,7 +11,7 @@
 import os
 import sys
 import subprocess
-from terra.custom import get_input
+from terra.misc_lib import get_input
 
 def run(args, restartable=True):
     args = args[2:].lower()
