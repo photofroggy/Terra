@@ -88,7 +88,7 @@ class Configure:
             self.data.load()
             self.write('Current configuration:')
             # Display config data!
-            inf = self.data.info
+            info = self.data.info
             self.write('Bot {0} = {1}'.format('username', info.username))
             self.write('Bot {0} = {1}'.format('password', info.password))
             self.write('Bot {0} = {1}'.format('owner', info.owner))
