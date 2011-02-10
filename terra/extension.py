@@ -18,6 +18,7 @@ class API(Reactor):
     
     def __init__(self, core, manager, *args, **kwargs):
         self.core = core
+        self.cconfig = core.config
         self.log = core.log
         self.name = str(self.__class__).split('.')[1].replace('_', ' ')
         super(API, self).__init__(manager, *args, **kwargs)
@@ -53,8 +54,8 @@ class Manager:
             
             if not hasattr(mod, 'Extension'):
                 if self.debug:
-                    self.log('!! Ignoring extension module {0}.'.format(name))
-                    self.log('!! Module contains no Extension class.')
+                    self.log('>> Ignoring extension module {0}.'.format(name))
+                    self.log('>> Module contains no Extension class.')
                     continue
             
             modules[name] = mod
@@ -70,8 +71,8 @@ class Manager:
                 extname = extobj.name
                 self.loaded[extname] = extobj
             except Exception as e:
-                self.log('!! Failed to load extension from {0}!'.format(name))
-                self.log('!! Error: {0}'.format(e.args[0]))
+                self.log('>> Failed to load extension from {0}!'.format(name))
+                self.log('>> Error: {0}'.format(e.args[0]))
         
         if self.debug:
             self.log('** Loaded extensions: {0}'.format(', '.join(self.loaded.keys())))

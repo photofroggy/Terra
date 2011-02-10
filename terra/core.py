@@ -8,6 +8,7 @@
 # stdlib
 import os
 import sys
+import time
 # custom libs
 from reflex.data import Event
 from reflex.control import EventManager
@@ -22,12 +23,15 @@ class Main:
     class info:
         name = 'Terra'
         version = 2
-        state = 'pre-alpha'
+        state = 'alpha'
         series = 'Legacy'
         build = 118
-        stamp = '00000000-000000'
+        stamp = '10022011-012452'
         rstamp = 0.0
         author = 'photofroggy'
+    
+    start = 0.0
+    config = False
     
     config_file = './storage/config.bsv'
     close = True
@@ -36,6 +40,7 @@ class Main:
             '** Bye bye!' ]
     
     def __init__(self, debug=False, restartable=True):
+        self.start = time.time()
         self.debug = debug
         self.restartable = restartable
         self.load_core()
@@ -53,16 +58,22 @@ class Main:
         self.exts = extension.Manager(self.log, self.debug)
     
     def intro(self):
-        self.log('** Welcome to Terra version 2!')
-        self.log('** Created by photofroggy!')
+        inf = self.info
+        self.log('** Hello thar!')
+        self.log('** Welcome to {0} {1} {2} by {3}.'.format(inf.name, inf.version, inf.state, inf.author))
+        self.log('** Build {0} ({1}) {2}.'.format(inf.build, inf.stamp, inf.series))
+        self.log('** Released under GNU GPL v3.')
     
     def config(self):
         conf = Settings(self.config_file)
-        if conf.info.username is not None:
-            return
-        self.log('** Looks like you need to set up the bot!')
-        self.log('** Loading config file...')
-        Configure(self.config_file, 'all')
+        if conf.info.username is None:
+            self.log('** Looks like you need to set up the bot!')
+            self.log('** Loading config file...')
+            Configure(self.config_file, 'all')
+        conf.load()
+        conf.info.password = None
+        conf.save = lambda n=None: n
+        self.config = conf
     
     def load_rules(self):
         self.log('** ... load rules here.')

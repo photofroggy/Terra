@@ -16,18 +16,18 @@ class Extension(extension.API):
         # Info commands.
         self.bind(self.c_about, 'command', ['about'], 'View some brief information about this bot!')
         
-        self.bind(self.c_quit, 'command', ['quit'], 'Turn off the bot with this command.')
+        self.bind(self.c_quit, 'command', ['quit', None, None, self.cconfig.info.owner], 'Turn off the bot with this command.')
         
-        #self.bind(self.e_recv_msg, 'recv_msg')
+        self.bind(self.e_recv_msg, 'recv_msg')
         
-        '''bname = self.Bot.username.lower()
+        bname = self.cconfig.info.username.lower()
         # Trigcheck strings..
         self.tcs = [
             bname + ': trigcheck',
             bname + ': trigger',
             bname + ', trigcheck',
             bname + ', trigger'
-        ]'''
+        ]
     
     def c_about(self, cmd, dAmn):
         """This command displays some brief information about the bot."""
@@ -45,8 +45,6 @@ class Extension(extension.API):
         
     def c_quit(self, cmd, dAmn):
         """Shut down or restart the bot."""
-        if cmd.user != dAmn.owner:
-            return
         restarting = False
         dAmn.say(
             cmd.ns,
@@ -66,8 +64,6 @@ class Extension(extension.API):
     
     def e_recv_msg(self, Evt, dAmn):
         """ Check for trigcheck and botcheck. """
-        if not self.User.has(Evt.user, 'Guests'):
-            return
         # Trigcheck
         if Evt.message.lower() in self.tcs:
             dAmn.say(

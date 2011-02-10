@@ -3,7 +3,7 @@
     This tells you the date of each build, and perhaps some brief details.
     The format for build names is "Build [build number] ([date]-[time(24hr - HHMMSS)]) [Series name]
 
-    Build 118 () Legacy
+    Build 118 (10022011-012452) Legacy
         * Bumped version to 2!
         * This is essentially a rewrite!
         * Managed to get a basic client that connects and allows configuration.
@@ -12,6 +12,8 @@
         * Updated to latest build of dAmn Viper.
         * Created a very basic extension system!
         * Added !about and !quit commands!
+        * Brushed things up a little.
+        * Moved development state back to Alpha!
 
     Build 117 (06122010-011554) Flux
         * Changed the dsp extension to use the TDS namespace for PROVIDER.
