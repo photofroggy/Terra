@@ -1,7 +1,7 @@
 
 import time
-from reflex.data import Event
 from terra import extension
+from rules.command import Event
 
 class Extension(extension.API):
 

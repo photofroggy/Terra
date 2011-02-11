@@ -13,6 +13,8 @@ import time
 from reflex.data import Event
 from reflex.control import EventManager
 # terra libs
+from terra import users
+from terra import ruleset
 from terra import extension
 from terra.client import Bot
 from terra.config import Settings
@@ -31,7 +33,7 @@ class Main:
         author = 'photofroggy'
     
     start = 0.0
-    config = False
+    config = None
     
     config_file = './storage/config.bsv'
     close = True
@@ -45,17 +47,28 @@ class Main:
         self.restartable = restartable
         self.load_core()
         self.intro()
-        self.config()
+        self.configure()
         self.load_rules()
         self.load_exts()
+        self.load_users()
         self.run()
     
     def load_core(self):
+        """ Load the core components for the bot. """
+        # Load our dAmn client!
         self.conn = Bot(self.config_file, self.debug)
+        # Store a logger so we can more easily write messages.
         self.log = self.conn.new_logger(showns=False)
-        self.evts = EventManager(output=self.log)
+        # Load an event manager.
+        self.evts = EventManager(output=self.log, debug=self.debug)
+        # Give our dAmn client a reference to the event manager.
         self.conn.set_evt_mgr(self.evts)
+        # Load a config object.
+        self.config = Settings(self.config_file)
+        # Load some more managers.
         self.exts = extension.Manager(self.log, self.debug)
+        self.rules = ruleset.Manager(self.log, self.debug)
+        self.user = users.Manager(self, './storage/users.bsv', self.debug)
     
     def intro(self):
         inf = self.info
@@ -64,22 +77,24 @@ class Main:
         self.log('** Build {0} ({1}) {2}.'.format(inf.build, inf.stamp, inf.series))
         self.log('** Released under GNU GPL v3.')
     
-    def config(self):
-        conf = Settings(self.config_file)
-        if conf.info.username is None:
+    def configure(self):
+        self.config.load()
+        if self.config.info.username is None:
             self.log('** Looks like you need to set up the bot!')
             self.log('** Loading config file...')
             Configure(self.config_file, 'all')
-        conf.load()
-        conf.info.password = None
-        conf.save = lambda n=None: n
-        self.config = conf
+        self.config.load()
+        self.config.info.password = None
+        self.config.save = lambda n=None: n
     
     def load_rules(self):
-        self.log('** ... load rules here.')
+        self.rules.load_rules(self, self.evts)
     
     def load_exts(self):
         self.exts.load_extensions(self, self.evts)
+    
+    def load_users(self):
+        self.user.load()
     
     def run(self):
         self.log('** Ok, that\'s everything! Let\'s go!')

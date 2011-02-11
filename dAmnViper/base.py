@@ -23,8 +23,8 @@ class dAmnSock:
         name = 'dAmn Viper'
         version = 2
         state = 'RC'
-        build = 49
-        stamp = '09022011-220339'
+        build = 50
+        stamp = '10022011-144923'
         series = 'Swift'
         author = 'photofroggy'
             

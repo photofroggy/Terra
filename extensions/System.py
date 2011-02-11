@@ -16,7 +16,7 @@ class Extension(extension.API):
         # Info commands.
         self.bind(self.c_about, 'command', ['about'], 'View some brief information about this bot!')
         
-        self.bind(self.c_quit, 'command', ['quit', None, None, self.cconfig.info.owner], 'Turn off the bot with this command.')
+        self.bind(self.c_quit, 'command', ['quit', 'Owner'], 'Turn off the bot with this command.')
         
         self.bind(self.e_recv_msg, 'recv_msg')
         
@@ -64,6 +64,8 @@ class Extension(extension.API):
     
     def e_recv_msg(self, Evt, dAmn):
         """ Check for trigcheck and botcheck. """
+        if not self.user.has(Evt.user, 'guests'):
+            return
         # Trigcheck
         if Evt.message.lower() in self.tcs:
             dAmn.say(

@@ -10,7 +10,7 @@
 
 
 ====================================================================
-		Terra version 1, Public Beta, by photofroggy
+           Terra version 2, Alpha, by photofroggy
 		Released under GNU General Public License 3.0
 ====================================================================
 --- Contents ---
@@ -31,7 +31,7 @@ the stuff that's available to you. There are plenty of resources in
 #Botdom and on Botdom.com, reading can work wonders!
 
 Terra is a bot in Python using only custom and built-in modules
-and functions, meaning you only need to have Python 3.0+ installed
+and functions, meaning you only need to have Python 3.1+ installed
 to run this bot, and no extras!
 
 When making the bot, I was trying out new concepts, mainly ones that
@@ -95,16 +95,16 @@ out both places if you want to know more about this bot.
 
 --- Disclaimer ---
 
-		Terra is in no way affiliated with or endorsed by deviantART.com.
-	This is not an official service of deviantART.com. This is an independent
-	project created by photofroggy:
-		<http://photofroggy.deviantart.com>
+        Terra is in no way affiliated with or endorsed by deviantART.com.
+    This is not an official service of deviantART.com. This is an independent
+    project created by photofroggy:
+        <http://photofroggy.deviantart.com>
 	
-		THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
-	APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
-	HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
-	OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
-	THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-	PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
-	IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
-	ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+        THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
+    APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+    HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
+    OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+    THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+    PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+    IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+    ALL NECESSARY SERVICING, REPAIR OR CORRECTION.

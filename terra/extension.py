@@ -19,6 +19,7 @@ class API(Reactor):
     def __init__(self, core, manager, *args, **kwargs):
         self.core = core
         self.cconfig = core.config
+        self.user = core.user
         self.log = core.log
         self.name = str(self.__class__).split('.')[1].replace('_', ' ')
         super(API, self).__init__(manager, *args, **kwargs)
