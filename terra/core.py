@@ -28,7 +28,7 @@ class Main:
         version = 2
         state = 'Alpha'
         series = 'Legacy'
-        build = 119
+        build = 120
         stamp = '12022011-030818'
         rstamp = 1297480098.29
         author = 'photofroggy'
@@ -50,9 +50,9 @@ class Main:
         self.intro()
         self.configure()
         self.conn.agent = self.agent(self.conn.platform, self.info)
+        self.load_users()
         self.load_rules()
         self.load_exts()
-        self.load_users()
         self.evts.trigger(Event('ready'))
         self.run()
     

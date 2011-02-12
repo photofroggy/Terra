@@ -67,9 +67,11 @@ class Manager:
                     return i
         return 1 if not name else self.groups.name(1)
     
-    def has(self, user, group):
-        priv = self.groups.find(group)
+    def has(self, user, group=None):
         user_priv = self.find(user)
+        if group is None:
+            return user_priv
+        priv = self.groups.find(group)
         return user_priv >= priv
     
 

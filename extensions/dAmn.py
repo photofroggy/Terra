@@ -20,35 +20,10 @@ class Extension(extension.API):
     
     def init(self):
         # Configure our dAmn Commands!!
-        self.bind(self.e_recv_msg, 'recv_msg')
+        self.bind(self.c_say, 'command', ['say', 'Owner'])
     
-    def e_recv_msg(self, event, dAmn):
-        if event.user.lower() == dAmn.user.username.lower():
-            return
-        if event.message[:len(dAmn.trigger)] == dAmn.trigger:
-            message = event.message[len(dAmn.trigger):]
-            splitmsg = message.split(' ')
-            findns = '' if not len(splitmsg) > 1 else splitmsg[1]
-            if findns[:1] in ('#', '@') and findns[1:] and not findns[1:2] in ('#', '@'):
-                target = dAmn.format_ns(findns)
-                splitmsg.pop(1)
-                message = ' '.join(splitmsg)
-                for cs in dAmn.channel.keys():
-                    if cs.lower() == str(target).lower():
-                        target = dAmn.channel[cs].namespace
-            else:
-                target = event.ns
-            if not None in self.trigger(
-                Event(
-                    'command',
-                    [('trigger', splitmsg[0]), ('user_group', ''),
-                        ('ns', event.ns), ('user', event.user),
-                        ('message', message), ('target', target), ('raw', event.raw)]
-                ), dAmn
-            ) and dAmn.flag.debug:
-                dAmn.logger('~Global',
-                    '>> {0} tried to execute non-existant command "{1}".'.format( str(event.user), splitmsg[0] ),
-                    False)
+    def c_say(self, cmd, dAmn):
+        dAmn.say(cmd.target, cmd.arguments(1, True))
         
     
 # EOF

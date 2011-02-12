@@ -2,3 +2,4 @@
 *.bsv
 storage/logs/*
 extensions/pbuild.py
+extensions/lines.py

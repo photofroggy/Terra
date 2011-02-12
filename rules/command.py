@@ -40,6 +40,7 @@ class Ruleset(interfaces.Ruleset):
                             return None
         else: self.mapref['command'] = []
         new_cmd = Binding(ext, meth, 'command', [(i if not isinstance(i, Channel) else str(i)) for i in options], additional)
+        new_cmd.set_privs(self.user.groups)
         self.mapref['command'].append(new_cmd)
         key = len(self.mapref['command'])-1
         if isinstance(options[0], str):
@@ -78,18 +79,12 @@ class Ruleset(interfaces.Ruleset):
             
     def run(self, binding, data, rules, dAmn):
         """Attempt to run a command's event binding."""
-        if len(binding.options) > 1:
-            grp = binding.options[1] if binding.options[1] != None else 'Guests'
-            if grp != 'Guests':
-                grp = self.user.groups.find(grp, True)
-                if grp is None: grp = 'Guests'
-        else:
-            grp = 'Guests'
         for i, option in enumerate(binding.options):
             if not option: continue
             if i is 0: continue
             if i is 1:
-                if not self.privd(data.user, grp, data.trigger): return None
+                if not self.privd(data.user, binding.level, data.trigger):
+                    return None
                 continue
             if i is 2:
                 if dAmn.format_ns(str(option)).lower() == str(data.ns).lower():
@@ -121,9 +116,9 @@ class Ruleset(interfaces.Ruleset):
     def reloading(self):
         self.index = {}
     
-    def privd(self, user, group, cmd):
+    def privd(self, user, level, cmd):
         """Check if users_group inherits access to group. User and cmd are provided in the event of errors."""
-        if self.user.has(user, group):
+        if self.user.has(user) >= level:
             return True
         self._write('>> User ' + str(user) + ' was denied access to the command \'' + cmd + '\'.')
         return False
@@ -162,5 +157,15 @@ class Binding(data.Binding):
     def __inst__(self):
         cmd = self.options[0] if isinstance(self.options[0], str) else self.options[0][0]
         self.type = '<event[\'command:'+cmd+'\'].binding>'
+    
+    def set_privs(self, groups):
+        grp = 'Guests'
+        if len(self.options) > 1:
+            grp = self.options[1] if self.options[1] != None else 'Guests'
+            if grp != 'Guests':
+                grp = groups.find(grp, True)
+                if grp is None: grp = 'Guests'
+        self.group = grp
+        self.level = groups.find(grp)
 
 # EOF

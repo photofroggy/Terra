@@ -3,6 +3,15 @@
     This tells you the date of each build, and perhaps some brief details.
     The format for build names is "Build [build number] ([date]-[time(24hr - HHMMSS)]) [Series name]
 
+    Build 120 () Legacy
+        * Improved on command priv checking.
+        * rules.command.Binding now stores ``group`` and ``level``.
+        ** This makes it easier to check who can access the command.
+        ** This should also make it easier to list the command according to access level.
+        * Created rules.recv_msg.
+        ** This ruleset now checks if a user is trying to use a command.
+        ** Win win!
+
     Build 119 (12022011-030818) Legacy
         * Updated to latest build of dAmn Viper!
         * Added a basic user system.
