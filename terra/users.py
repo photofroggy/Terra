@@ -17,7 +17,9 @@ class Manager:
         self.map = []
         self.groups = Groups()
     
-    def load(self):
+    def load(self, owner=None):
+        if owner is not None:
+            self.owner = owner
         self.log('** Loading user data...')
         if not os.path.exists(self.file):
             self.log('>> No user data found! Setting default user list!')

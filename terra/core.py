@@ -87,7 +87,7 @@ class Main:
             self.log('** Looks like you need to set up the bot!')
             self.log('** Loading config file...')
             Configure(self.config_file, 'all')
-        self.config.load()
+            self.config.load()
         self.config.info.password = None
         self.config.save = lambda n=None: n
     
@@ -98,7 +98,7 @@ class Main:
         self.exts.load_extensions(self, self.evts)
     
     def load_users(self):
-        self.user.load()
+        self.user.load(self.config.info.owner)
     
     def agent(self, inf, mnplat):
         uname = platform.uname()
