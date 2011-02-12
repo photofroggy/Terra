@@ -11,7 +11,7 @@
 
 ====================================================================
            Terra version 2, Alpha, by photofroggy
-		Released under GNU General Public License 3.0
+        Released under GNU General Public License 3.0
 ====================================================================
 --- Contents ---
 - Introduction

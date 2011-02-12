@@ -3,13 +3,14 @@
     This tells you the date of each build, and perhaps some brief details.
     The format for build names is "Build [build number] ([date]-[time(24hr - HHMMSS)]) [Series name]
 
-    Build 119 () Legacy
+    Build 119 (12022011-030818) Legacy
         * Updated to latest build of dAmn Viper!
         * Added a basic user system.
         * Added a command ruleset.
         ** This lead me to find bugs in Reflex.
         ** Reflex needs to be updated and a fix released.
-        * Reflex bug fix released an applied to Terra!
+        * Reflex bug fix released and applied to Terra!
+        * Fixed small problems with logging errors.
 
     Build 118 (10022011-012452) Legacy
         * Bumped version to 2!

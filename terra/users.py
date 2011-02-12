@@ -13,17 +13,14 @@ class Manager:
     def __init__(self, core, file='./storage/users.bsv', debug=False):
         self.file = file
         self.owner = core.config.info.owner
-        self.log = core.log
-        self.debug = debug
+        self.log = core.dlog
         self.map = []
         self.groups = Groups()
     
     def load(self):
-        if self.debug:
-            self.log('** Loading user data...')
+        self.log('** Loading user data...')
         if not os.path.exists(self.file):
-            if self.debug:
-                self.log('>> No user data found! Setting default user list!')
+            self.log('>> No user data found! Setting default user list!')
             self.map = self.defaults()
             self.load_groups()
             self.save()
@@ -32,18 +29,15 @@ class Manager:
             self.map = json.loads(file.read())
             file.close()
             self.load_groups()
-        if self.debug:
-            self.log('** User data loaded.')
+        self.log('** User data loaded.')
     
     def save(self):
-        if self.debug:
-            self.log('** Saving user data...')
+        self.log('** Saving user data...')
         self.save_groups()
         file = open(self.file, 'w')
         file.write(export_struct(self.map))
         file.close()
-        if self.debug:
-            self.log('** User data saved.')
+        self.log('** User data saved.')
     
     def load_groups(self):
         grps = [[grp[0], grp[1]] for grp in self.map]

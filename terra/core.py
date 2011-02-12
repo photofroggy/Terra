@@ -26,11 +26,11 @@ class Main:
     class info:
         name = 'Terra'
         version = 2
-        state = 'alpha'
+        state = 'Alpha'
         series = 'Legacy'
-        build = 118
-        stamp = '10022011-012452'
-        rstamp = 0.0
+        build = 119
+        stamp = '12022011-030818'
+        rstamp = 1297480098.29
         author = 'photofroggy'
     
     start = 0.0
@@ -62,6 +62,7 @@ class Main:
         self.conn = Bot(self.config_file, self.debug)
         # Store a logger so we can more easily write messages.
         self.log = self.conn.new_logger(showns=False)
+        self.dlog = self.conn.new_logger('~Global', False, True)
         # Load an event manager.
         self.evts = EventManager(output=self.log, debug=self.debug)
         # Give our dAmn client a reference to the event manager.
@@ -69,8 +70,8 @@ class Main:
         # Load a config object.
         self.config = Settings(self.config_file)
         # Load some more managers.
-        self.exts = extension.Manager(self.log, self.debug)
-        self.rules = ruleset.Manager(self.log, self.debug)
+        self.exts = extension.Manager(self, self.debug)
+        self.rules = ruleset.Manager(self, self.debug)
         self.user = users.Manager(self, './storage/users.bsv', self.debug)
     
     def intro(self):

@@ -64,7 +64,8 @@ class Bot(ReconnectingClient):
         self._events.trigger(Event(data['event'], data['rules']), self)
     
     def logger(self, ns, msg, showns=True, mute=False, pkt=None):
-        if self.flag.logging: self.save_msg(msg, ns)
+        if self.flag.logging:
+            self.save_msg(msg, ns)
         if not showns and ns != '~Global' and self.format_ns(ns) in self.channel.keys():
             if msg.startswith('** Got'):
                 if self.channel[self.format_ns(ns)].member == {}:
@@ -77,7 +78,7 @@ class Bot(ReconnectingClient):
                 return
             sys.stdout.write('{0}{1}\n'.format(self.clock(), message))
             if self.flag.debug:
-                self.save_msg('{0}{1}'.format(self.clock(), message), '~Debug')
+                self.save_msg(message, '~Debug')
         except UnicodeError:
             sys.stdout.write('{0} >> Received an unprintable message!\n'.format(self.clock()))
         sys.stdout.flush()
@@ -91,7 +92,7 @@ class Bot(ReconnectingClient):
         if not os.path.exists('./storage/logs/' + ns): os.mkdir('./storage/logs/' + ns, 0o755)
         file = open('./storage/logs/{0}/{1}.txt'.format(ns, self._received), 'a')
         try:
-            file.write('{0} {1}{2}'.format(self.clock(), msg, "\n"))
+            file.write('{0} {1}{2}'.format(self.clock(), msg.lstrip(), "\n"))
         except UnicodeEncodeError:
             file.write('{0} >> Unprintable message received in {1}!\n'.format(self.clock(), ns))
         file.close()

@@ -14,26 +14,24 @@ import rules
     
 class Manager:
     
-    def __init__(self, writer, debug=False):
-        self.log = writer
+    def __init__(self, core, debug=False):
+        self.log = core.log
+        self.dlog = core.dlog
         self.debug = debug
         self.modules = {}
         self.loaded = []
     
     def load_modules(self):
-        if self.debug:
-            self.log('** Checking modules in rules folder.')
+        self.dlog('** Checking modules in rules folder.')
         modules = {}
         walker = pkgutil.walk_packages(rules.__path__, rules.__name__ + '.')
         for tup in walker:
             name = tup[1]
             
-            if self.debug:
-                self.log('** Found module \'{0}\'.'.format(name))
+            self.dlog('** Found module \'{0}\'.'.format(name))
                 
             if name in self.modules.keys():
-                if self.debug:
-                    self.log('** Previously loaded ruleset. Reloading!')
+                self.dlog('** Previously loaded ruleset. Reloading!')
                 imp.reload(self.modules[name])
                 modules[name] = self.modules[name]
                 continue
@@ -42,17 +40,15 @@ class Manager:
             mod = loader.load_module(name)
             
             if not hasattr(mod, 'Ruleset'):
-                if self.debug:
-                    self.log('>> Ignoring ruleset module {0}.'.format(name))
-                    self.log('>> Module contains no Ruleset class.')
-                    continue
+                self.dlog('>> Ignoring ruleset module {0}.'.format(name))
+                self.dlog('>> Module contains no Ruleset class.')
+                continue
             
             modules[name] = mod
         self.modules = modules
     
     def load_rules(self, core, manager):
-        if self.debug:
-            self.log('** Loading rulesets...')
+        self.dlog('** Loading rulesets...')
         self.load_modules()
         self.loaded = []
         for name, mod in self.modules.items():
@@ -64,5 +60,4 @@ class Manager:
                 self.log('>> Failed to load ruleset from {0}!'.format(name))
                 self.log('>> Error: {0}'.format(e.args[0]))
         
-        if self.debug:
-            self.log('** Loaded rulesets: {0}'.format(', '.join(self.loaded)))
+        self.dlog('** Loaded rulesets: {0}'.format(', '.join(self.loaded)))

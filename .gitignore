@@ -1,3 +1,4 @@
 *.pyc
 *.bsv
 storage/logs/*
+extensions/pbuild.py
