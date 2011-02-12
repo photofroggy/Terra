@@ -9,6 +9,7 @@
         * Added a command ruleset.
         ** This lead me to find bugs in Reflex.
         ** Reflex needs to be updated and a fix released.
+        * Reflex bug fix released an applied to Terra!
 
     Build 118 (10022011-012452) Legacy
         * Bumped version to 2!

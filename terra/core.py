@@ -9,6 +9,7 @@
 import os
 import sys
 import time
+import platform
 # custom libs
 from reflex.data import Event
 from reflex.control import EventManager
@@ -48,9 +49,11 @@ class Main:
         self.load_core()
         self.intro()
         self.configure()
+        self.conn.agent = self.agent(self.conn.platform, self.info)
         self.load_rules()
         self.load_exts()
         self.load_users()
+        self.evts.trigger(Event('ready'))
         self.run()
     
     def load_core(self):
@@ -96,8 +99,16 @@ class Main:
     def load_users(self):
         self.user.load()
     
+    def agent(self, inf, mnplat):
+        uname = platform.uname()
+        name, release, version = uname[:3]
+        return ''.join(['Python/{0}.{1} '.format( str(os.sys.version_info[0]), str(os.sys.version_info[1]) ),
+            '({0}; U; {1} {2}; en-GB; {3}) '.format(name, release, version, self.config.info.owner),
+            '/'.join([mnplat.name, mnplat.stamp.replace('-','')]),
+            ' {0}/{1}.{2}'.format(inf.name, str(inf.version), str(inf.build))
+        ])
+    
     def run(self):
-        self.log('** Ok, that\'s everything! Let\'s go!')
         self.conn.start()
         for msg in self.exit_msgs:
             self.log(msg)

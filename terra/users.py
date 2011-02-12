@@ -19,7 +19,8 @@ class Manager:
         self.groups = Groups()
     
     def load(self):
-        self.log('** Loading user data...')
+        if self.debug:
+            self.log('** Loading user data...')
         if not os.path.exists(self.file):
             if self.debug:
                 self.log('>> No user data found! Setting default user list!')

@@ -51,7 +51,8 @@ class Manager:
         self.modules = modules
     
     def load_rules(self, core, manager):
-        self.log('** Loading rulesets...')
+        if self.debug:
+            self.log('** Loading rulesets...')
         self.load_modules()
         self.loaded = []
         for name, mod in self.modules.items():

@@ -1,0 +1,129 @@
+''' DSP Message Ruleset.
+    This class controls event interactions for the event called "dsp_msg".
+'''
+
+from functools import wraps
+from collections import Iterable
+from terra import misc_lib
+from dAmnViper.data import Channel
+from reflex import interfaces.Ruleset
+
+class Ruleset(interfaces.Ruleset):
+
+    def init(self):
+        self.index = {}
+        self.User = self.core.user
+        self.username = self.core.config.username
+        
+    def bind(self, ext, meth, event, options, *additional):
+        if not options: return None
+        if not options[0]: return None
+        if type(options[0]) in (type(()), type([])):
+            if not options[0][0]: return None
+        if 'dsp_msg' in self.mapref:
+            for binding in self.mapref['dsp_msg']:
+                if (binding.extension, binding.call, binding.options) is (ext, meth, options):
+                    return None
+        else: self.mapref['dsp_msg'] = []
+        options[0] = [str(i).lower() for i in options[0]]
+        new_cmd = Binding(ext, meth, 'dsp_msg', [(i if not isinstance(i, Channel) else str(i)) for i in options], additional)
+        self.mapref['dsp_msg'].append(new_cmd)
+        return new_cmd
+    
+    def unbind(self, ext, method, event, options=None):
+        if not options:
+            return
+        options[0] = [str(i).lower() for i in options[0]]
+        Events.Ruleset.unbind(self, ext, method, event, options)
+            
+    def run(self, binding, data, rules, dAmn):
+        """Attempt to run a command's event binding."""
+        for i, option in enumerate(binding.options):
+            if not option: continue
+            if i is 0:
+                if self.matches(option, rules[0]):
+                    continue
+                return None
+            if i is 1:
+                if dAmn.format_ns(str(option)).lower() == str(data.ns).lower():
+                    continue
+                return None
+            rule = rules[i]
+            if isinstance(rule, str):
+                if str(rule).lower() == option.lower():
+                    continue
+            if rule is option:
+                continue
+            return None
+        ext = self.extref[binding.extension]
+        if ext._is_running():
+            ext.queue_event(binding.call, (data, dAmn))
+            return None
+        try:
+            binding.call(data, dAmn)
+        except Exception as e:
+            log = dAmn.new_logger(showns = False)
+            log('>> Failed to execute {0}!'.format(binding.type))
+            log('>> Error message: {0}.'.format(e.args[0]))
+        return None
+    
+    def reloading(self):
+        self.index = {}
+    
+    def matches(self, options, command):
+        for i, option in enumerate(options):
+            if option == '*':
+                continue
+            if option == None and command[i] != '':
+                return False
+            if option == command[i]:
+                continue
+            if isinstance(option, Iterable) and command[i] in option:
+                continue
+            return False
+        return True
+
+class dsp_trigger:
+    def __init__(self, data):
+        self.ns = data[0]
+        self.cat = data[1]
+        self.cmd = data[2]
+
+class dsp_msg(Events.event):
+    """ DSP Message class. The objects represent different events! """
+    
+    name = 'dsp_msg'
+    
+    def __init__(self, names, rules):
+        self.rules = rules
+        # Set values
+        self.trigger = dsp_trigger(rules[0])
+        self.ns = rules[1]
+        self.user = rules[2]
+        self.payload = rules[3]
+        self.raw = rules[4]
+        self.__inst__(self.name, names, rules)
+        self.arguments = self._args_wrapper(self.payload)
+        self._strnm = ':'.join([i.upper() for i in rules[0]])
+    
+    def __inst__(self, event, args, for_rules):
+        """Overwrite this method if you need to do stuff on instatiation. Do not overwrite __init__."""
+        pass
+    
+    def _args_wrapper(self, message):
+        @wraps(misc_lib.arguments)
+        def wrapper(start=0, finish=False, separator=',', sequence=False):
+            return misc_lib.arguments(message, start, finish, separator, sequence)
+        return wrapper
+    
+    def __str__(self):
+        return '<event[\'dsp_msg:' + self._strnm + '\']>'
+
+class Binding(Events.Binding):
+    """Command Binding class."""
+        
+    def __inst__(self):
+        cmd = ':'.join([i.upper() for i in self.options[0]])
+        self.type = '<event[\'dsp_msg:'+cmd+'\'].binding>'
+
+# EOF
