@@ -12,6 +12,7 @@
         ** This ruleset now checks if a user is trying to use a command.
         ** Win win!
         * Fixed a bug involving user access control.
+        * Fixed another first-run bug, this time involving the trigger.
 
     Build 119 (12022011-030818) Legacy
         * Updated to latest build of dAmn Viper!

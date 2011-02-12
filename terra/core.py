@@ -88,6 +88,7 @@ class Main:
             self.log('** Loading config file...')
             Configure(self.config_file, 'all')
             self.config.load()
+            self.conn.load_config()
         self.config.info.password = None
         self.config.save = lambda n=None: n
     
