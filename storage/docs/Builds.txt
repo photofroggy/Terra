@@ -13,6 +13,8 @@
         ** Win win!
         * Fixed a bug involving user access control.
         * Fixed another first-run bug, this time involving the trigger.
+        * Added a file IO api for extensions.
+        * The extension fileio has been created as an example of how to use the file IO api.
 
     Build 119 (12022011-030818) Legacy
         * Updated to latest build of dAmn Viper!

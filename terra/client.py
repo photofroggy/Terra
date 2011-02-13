@@ -27,7 +27,7 @@ class Bot(ReconnectingClient):
         self._config_file = file
         self.flag.debug = debug
         self.flag.logging = True
-        self.__mute_channels = []
+        self.mute_channels = []
         self.load_config()
         self.user.password = None
     
@@ -63,6 +63,23 @@ class Bot(ReconnectingClient):
     def pkt_generic(self, data):
         self._events.trigger(Event(data['event'], data['rules']), self)
     
+    def say(self, ns, msg):
+        if self.deform_ns(ns).lower() in self.mute_channels:
+            return
+        super(Bot, self).say(ns, msg)
+    
+    def mute_channel(self, ns):
+        ns = self.deform_ns(ns).lower()
+        if ns in self.mute_channels:
+            return
+        self.mute_channels.append(ns)
+    
+    def unmute_channel(self, ns):
+        ns = self.deform_ns(ns).lower()
+        if ns in self.mute_channels:
+            return
+        self.mute_channels.remove(ns)
+    
     def logger(self, ns, msg, showns=True, mute=False, pkt=None):
         if self.flag.logging:
             self.save_msg(msg, ns)
@@ -74,7 +91,7 @@ class Bot(ReconnectingClient):
         
     def pnt_message(self, ns, message, mute=False):
         try:
-            if (mute or ns.lower() in self.__mute_channels) and not self.flag.debug:
+            if (mute or ns.lower() in self.mute_channels) and not self.flag.debug:
                 return
             sys.stdout.write('{0}{1}\n'.format(self.clock(), message))
             if self.flag.debug:

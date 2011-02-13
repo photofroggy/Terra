@@ -26,7 +26,7 @@ class Main:
     class info:
         name = 'Terra'
         version = 2
-        state = 'Alpha'
+        state = 'Development'
         series = 'Legacy'
         build = 120
         stamp = '12022011-030818'
