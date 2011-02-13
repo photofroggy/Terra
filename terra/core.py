@@ -53,7 +53,7 @@ class Main:
         self.load_users()
         self.load_rules()
         self.load_exts()
-        self.evts.trigger(Event('ready'))
+        self.evts.trigger(Event('ready'), self.conn)
         self.run()
     
     def load_core(self):
@@ -114,4 +114,5 @@ class Main:
         self.conn.start()
         for msg in self.exit_msgs:
             self.log(msg)
-        
+        self.close = self.conn.flag.close
+        self.restart = self.conn.flag.restart

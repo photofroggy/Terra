@@ -3,3 +3,4 @@
 storage/logs/*
 extensions/pbuild.py
 extensions/lines.py
+storage/ext/*

@@ -15,7 +15,7 @@ class Extension(extension.API):
         # COMMANDS
         # Info commands.
         self.bind(self.c_about, 'command', ['about'], 'View some brief information about this bot!')
-        
+        self.bind(self.c_commands, 'command', ['commands'], 'List the bot\'s commands!')
         self.bind(self.c_quit, 'command', ['quit', 'Owner'], 'Turn off the bot with this command.')
         
         self.bind(self.e_recv_msg, 'recv_msg')
@@ -42,6 +42,34 @@ class Extension(extension.API):
                 '' if not dAmn.flag.debug else '<br/><i>Currently running in debug mode.</i>'
             )
         )
+    
+    def c_commands(self, cmd, dAmn):
+        dAmn.say(cmd.target, self.full_cmd_list(cmd.user))
+    
+    def full_cmd_list(self, user):
+        grps = self.user.groups.get()
+        cmds = []
+        cmdn = 0
+        for group in grps:
+            names = [x.lower() for x in group if x is not None]
+            gcmds = []
+            for binding in self.core.evts.map['command']:
+                if binding.group.lower() in names:
+                    cmdn+= 1
+                    if type(binding.options[0]) in (type(()), type([])):
+                        cmdn+= len(binding.options[0])-1
+                        cmdname = ', '.join(binding.options[0])
+                    else:
+                        cmdname = binding.options[0]
+                    gcmds.append(
+                        '<abbr title="Extension: {0}; Method: {1};">{2}</abbr>'.format(
+                            binding.source, binding.call.__name__, cmdname))
+            if len(gcmds) == 0:
+                continue
+            cmds.insert(0, '- <b> <abbr title="real: {0}">{1}</abbr>:</b> {2}'.format(
+                group[0], group[1] or group[0], ', '.join(gcmds)))
+        return '<abbr title="{0}"></abbr><b>{1} available commands:</b><br/><sub>{2}</sub>'.format(
+            user, cmdn, '<br/>'.join(cmds))
         
     def c_quit(self, cmd, dAmn):
         """Shut down or restart the bot."""
