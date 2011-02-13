@@ -28,7 +28,7 @@ def run(args, restartable=True):
     if args in ('bot', 'debug'):
         from terra import core
         ret = core.Main(args == 'debug', restartable)
-        sys.stdout.write(('='*80))
+        sys.stdout.write(('='*80) + '\n')
         if ret.close and not (ret.restart and restartable):
             return
         argv = [(str(i) if not k else i) for k, i in enumerate(sys.argv)]
@@ -39,7 +39,7 @@ def run(args, restartable=True):
         while not resp in ('y', 'n'):
             resp = get_input('>> Would you like to reboot?[Y|N]: ').lower()
         if resp == 'y':
-            sys.stdout.write(('='*80))
+            sys.stdout.write(('='*80) + '\n')
             subprocess.Popen([sys.executable] + argv)
             return
         input('>> Press enter to continue...')

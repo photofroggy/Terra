@@ -3,6 +3,7 @@
 '''
 
 #stdlib
+import traceback
 from functools import wraps
 # Reflex
 from reflex import data
@@ -110,7 +111,10 @@ class Ruleset(interfaces.Ruleset):
         except Exception as e:
             log = dAmn.new_logger(showns = False)
             log('>> Failed to execute command "{0}"!'.format(data.trigger))
-            log('>> Error message: {0}.'.format(e.args[0]))
+            log('>> Error:')
+            tb = traceback.format_exc().splitlines()
+            for line in tb:
+                log('>> {0}'.format(line))
         return None
     
     def reloading(self):

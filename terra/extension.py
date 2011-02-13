@@ -9,6 +9,7 @@
 # stdlib
 import imp
 import pkgutil
+import traceback
 # reflex lib
 from reflex.interfaces import Reactor
 # Extensions
@@ -70,6 +71,9 @@ class Manager:
                 self.loaded[extname] = extobj
             except Exception as e:
                 self.log('>> Failed to load extension from {0}!'.format(name))
-                self.log('>> Error: {0}'.format(e.args[0]))
+                self.log('>> Error:')
+                tb = traceback.format_exc().splitlines()
+                for line in tb:
+                    self.log('>> {0}'.format(line))
         
         self.dlog('** Loaded extensions: {0}'.format(', '.join(self.loaded.keys())))
