@@ -20,6 +20,7 @@ from terra import extension
 from terra.client import Bot
 from terra.config import Settings
 from terra.config import Configure
+from terra.misc_lib import clean_files
 
 class Main:
     
@@ -111,6 +112,7 @@ class Main:
         ])
     
     def run(self):
+        clean_files()
         self.conn.start()
         for msg in self.exit_msgs:
             self.log(msg)

@@ -1,9 +1,10 @@
 
-import time
 import os
+import time
 import platform
 from hashlib import md5
 from terra import extension
+from terra import misc_lib
 
 class Extension(extension.API):
     
@@ -15,6 +16,8 @@ class Extension(extension.API):
         # COMMANDS
         # Info commands.
         self.bind(self.c_about, 'command', ['about'], 'View some brief information about this bot!')
+        self.bind(self.c_system, 'command', ['system'], 'View information about the system.')
+        self.bind(self.c_uptime, 'command', ['uptime'], 'See how long the bot has been running for.')
         self.bind(self.c_commands, 'command', ['commands'], 'List the bot\'s commands!')
         self.bind(self.c_quit, 'command', ['quit', 'Owner'], 'Turn off the bot with this command.')
         
@@ -42,6 +45,44 @@ class Extension(extension.API):
                 '' if not dAmn.flag.debug else '<br/><i>Currently running in debug mode.</i>'
             )
         )
+    
+    def c_system(self, cmd, dAmn):
+        """View system information for the bot."""
+        inf = dAmn.platform
+        rplat = self.core.evts.info
+        msg = ['<abbr title="' + cmd.user + '"></abbr><b>System information:</b><sub>']
+        msg.append('<b> - Platform:</b> ' + ' '.join([platform.platform(1,1), platform.version()]))
+        msg.append('<b> - Runtime Environment:</b> <code>Python ' + os.sys.version.replace("\n", '') + '</code>')
+        msg.append(
+            '<b> - dAmn engine:</b> ' + ' '.join(
+                [
+                    inf.name, str(inf.version), inf.state,
+                    '- Build ' + str(inf.build) + ' (' + str(inf.stamp) + ') ' + inf.series
+                ]
+            )
+        )
+        msg.append(
+            '<b> - Event engine:</b> '+ ' '.join(
+                [
+                    'Reflex', str(rplat.version), rplat.state,
+                    '- Build', str(rplat.build), '('+str(rplat.stamp)+')', rplat.name
+                ]
+            )
+        )
+        msg.append(
+            '<b> - Core:</b> ' + ' '.join(
+                [
+                    self.core.info.name, str(self.core.info.version), self.core.info.state,
+                    '- Build', str(self.core.info.build), '(' + str(self.core.info.stamp) + ')', self.core.info.series
+                ]
+            )
+        )
+        msg.append('<b> - Uptime:</b> ' + self.getuptime())
+        dAmn.say(cmd.target, '<br/>'.join(msg))
+    
+    def c_uptime(self, cmd, dAmn):
+        """View how long the bot has been running for."""
+        dAmn.say(cmd.target, '<abbr title="{0}"></abbr>Uptime: {1}.'.format(cmd.user, self.getuptime()))
     
     def c_commands(self, cmd, dAmn):
         dAmn.say(cmd.target, self.full_cmd_list(cmd.user))
@@ -103,5 +144,8 @@ class Extension(extension.API):
                     dAmn.trigger.replace('&', '&amp;')
                 )
             )
+    
+    def getuptime(self):
+        return misc_lib.strftimelen(time.time() - self.core.start)
 
 # EOF

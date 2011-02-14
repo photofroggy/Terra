@@ -18,6 +18,7 @@
         * Added google extension.
         * Added Terrafm extension.
         * Added a commands command!
+        * Added a couple more commands to the system extension.
 
     Build 119 (12022011-030818) Legacy
         * Updated to latest build of dAmn Viper!
