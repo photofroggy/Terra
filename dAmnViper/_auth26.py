@@ -3,36 +3,54 @@
     Created by photofroggy.
 '''
 
+import re
 import urllib
 import urllib2
 import cookielib
     
-class ConnectionError(Exception):
+class HTTPResponder:
     headers = {
         'Location': 'localhost',
         'Status': (0, False),
     }
- 
-def fetch_token(obj, username, password, extras={'reusetoken':'1'}, client='dAmnViper (python 2.x) TokenGrabber/2'):
-    """This method actually retrieves the cookie and authtoken."""
+    
+    def __init__(self, url, data=''):
+        self.url = url
+        self.data = data
+    
+    def geturl(self, *args, **kwargs):
+        return self.url
+
+def fetch_cookie(obj, username, password, extras={'remember_me':'1'}, client='dAmnViper (python2.x) TokenGrabber/2'):
     extras.update({'username': username, 'password': password})
-    jar = cookielib.CookieJar()
-    opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(jar))
+    obj.jar = cookielib.CookieJar()
+    opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(obj.jar))
     req = urllib2.Request(
         obj.url,
         urllib.urlencode(extras),
         {'User-Agent': client},
     )
     try:
-        obj.response = opener.open(req)
+        response = opener.open(req)
     except IOError as e:
-        obj.response = ConnectionError()
-        obj.response.headers['Status'] = (e.reason.errno, e.strerror)
-        return
-    for cookie in jar:
-        if cookie.name == 'auth':
-            obj.cookie = urllib.unquote(cookie.value)
-            return
+        response = HTTPResponder('ConnectionError')
+        response.headers['Status'] = (e.reason.errno, e.strerror)
+    return response
     # Well, that was nice and easy :D
+
+def fetch_channel(obj, url='http://chat.deviantart.com/chat/botdom', client='dAmnViper (python3.x) TokenGrabber/2'):
+    opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(obj.jar))
+    req = urllib2.Request(
+        url,
+        urllib.urlencode({}),
+        {'User-Agent': client})
+    response = {}
+    try:
+        resp = opener.open(req)
+        response = HTTPResponder(resp.geturl(), resp.read())
+    except IOError as e:
+        response = HTTPResponder('ConnectionError')
+        response.headers['Status'] = (e.reason.errno, e.strerror)
+    return response
 
 # EOF

@@ -16,10 +16,11 @@ class Extension(extension.API):
         # COMMANDS
         # Info commands.
         self.bind(self.c_about, 'command', ['about'], 'View some brief information about this bot!')
+        self.bind(self.c_build, 'command', ['build'], 'View the build information for this bot!')
         self.bind(self.c_system, 'command', ['system'], 'View information about the system.')
         self.bind(self.c_uptime, 'command', ['uptime'], 'See how long the bot has been running for.')
         self.bind(self.c_commands, 'command', ['commands'], 'List the bot\'s commands!')
-        self.bind(self.c_quit, 'command', ['quit', 'Owner'], 'Turn off the bot with this command.')
+        self.bind(self.c_quit, 'command', [['quit', 'restart'], 'Owner'], 'Turn off the bot with this command.')
         
         self.bind(self.e_recv_msg, 'recv_msg')
         
@@ -43,6 +44,16 @@ class Extension(extension.API):
                 self.core.info.author,
                 dAmn.owner,
                 '' if not dAmn.flag.debug else '<br/><i>Currently running in debug mode.</i>'
+            )
+        )
+    
+    def c_build(self, cmd, dAmn):
+        """View this bot's build information."""
+        dAmn.say(
+            cmd.target,
+            '{0}: Current build: Build {1} ({2}) {3}'.format(
+                cmd.user, self.core.info.build,
+                self.core.info.stamp, self.core.info.series
             )
         )
     
@@ -114,12 +125,16 @@ class Extension(extension.API):
         
     def c_quit(self, cmd, dAmn):
         """Shut down or restart the bot."""
-        restarting = False
+        restarting = cmd.trigger.lower() == 'restart'
+        if restarting and not self.core.restartable:
+            dAmn.say(cmd.ns, cmd.user + ': Terra cannot be restarted when run from the menu.')
+            return
         dAmn.say(
             cmd.ns,
-            '{0}: {1}.'.format(
+            '{0}: {1} after running for {2}.'.format(
                 cmd.user,
-                'Restarting' if restarting else 'Quitting'
+                'Restarting' if restarting else 'Quitting',
+                self.getuptime()
             )
         )
         self.core.exit_msgs[0] = '** Bot {1} on request by {0}.'.format(
@@ -129,6 +144,7 @@ class Extension(extension.API):
         dAmn.flag.quitting = True
         dAmn.flag.disconnecting = True
         dAmn.flag.restart = restarting
+        dAmn.flag.close = cmd.arguments(1).lower() != 'soft'
         dAmn.disconnect()
     
     def e_recv_msg(self, Evt, dAmn):

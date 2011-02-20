@@ -19,6 +19,9 @@
         * Added Terrafm extension.
         * Added a commands command!
         * Added a couple more commands to the system extension.
+        * Updated dAmnViper and Reflex.
+        * Added the restart command!
+        * Added a ping command!
 
     Build 119 (12022011-030818) Legacy
         * Updated to latest build of dAmn Viper!

@@ -23,8 +23,8 @@ class dAmnSock:
         name = 'dAmn Viper'
         version = 2
         state = 'RC'
-        build = 50
-        stamp = '10022011-144923'
+        build = 52
+        stamp = '20022011-002000'
         series = 'Swift'
         author = 'photofroggy'
             
@@ -53,7 +53,7 @@ class dAmnSock:
         cookie = None
         token = None
 
-    extras = {'reusetoken':'1'}
+    extras = {'remember_me':'1'}
     agent = 'dAmnViper (python 3.x) dAmnSock/1.1'
     sock = None
     
@@ -434,7 +434,7 @@ class ReconnectingClient(Client):
         self.agent = 'dAmnViper (Python 3.1) ReconnectingClient/Client/dAmnSock/{0}.{1}'.format(
             self.platform.version, self.platform.build)
         self._received = time.strftime('%Y-%m-%d')
-        self._connect_attemps = 0
+        self._connect_attempts = 0
         self.session = None
     
     def nullflags(self):
@@ -450,40 +450,17 @@ class ReconnectingClient(Client):
         # We want this to be a continuous loop, so we can keep trying to connect if there are problems.
         while True:
             self._connect_attempts += 1
-            if not self.user.token:
-                # If we don't have an authtoken, try and grab one!
-                self.logger('~Global', '** Retrieving authtoken...', False)
-                self.get_token()
-                if self.session is None:
-                    self.logger('~Global', '>> Insufficient login details provided.', False)
-                    return
-                if self.session.status[0] != 1:
-                    # Something went wrong! Maybe the user entered the wrong details?!
-                    self.logger('~Global', '>> Failed to get an authtoken.', False)
-                    self.logger('~Global', '>> {0}'.format(self.session.status[1]), False)
-                    return
-                # If we get here all is well.
-                self.logger('~Global', '** Got an authtoken.', False)
-            self.logger('~Global', '** Opening a connection to dAmn.', False)
-            # Actually try to connect to dAmn!
-            # This simply opens a socket connection. The rest takes more effort.
-            self.connect()
-            if not self.flag.connecting:
-                self.logger('~Global', '>> Failed to open a connection to dAmn.', False)
+            if not self.authenticate(vals, *args, **kwargs):
                 return
-            # Send a handshake to the server!
-            self.handshake(vals if bool(vals) else {'Client':'Viper.ReconnectingClient'})
+            self.logger('~Global', '** Opening a connection to dAmn.', False)
+            if not self.make_connection(vals, *args, **kwargs):
+                return
             # Enter the main loop of the program! Hells yeah!
             self.run(*args, **kwargs)
-            if self.flag.reconnect and self._connect_attempts < 3:
-                # We only want to stay in this loop if we want to connect again.
-                # Hence the reconnect flag in our flag class.
+            # Ok, we're not connected anymore! What should we do?
+            if self.attempt_reconnect(vals, *args, **kwargs):
                 self.nullflags()
                 continue
-            if self._connect_attempts >= self._connect_attempt_limit:
-                self.logger('~Global', '>> Failed to connect to dAmn three times. Giving up.', False)
-                self.logger('~Global', '>> Make sure you entered the login details correctly.', False)
-                self.logger('~Global', '>> If you already have, there may be a problem with dAmn.', False)
             break
     
     def run(self, *args, **kwargs):
@@ -509,12 +486,52 @@ class ReconnectingClient(Client):
         self._received = time.strftime('%Y-%m-%d')
         self.get_packets()
         time.sleep(.05)
+    
+    def authenticate(self, vals=None, *args, **kwargs):
+        if not self.user.token:
+            # If we don't have an authtoken, try and grab one!
+            self.logger('~Global', '** Retrieving authtoken, this may take a while...', False)
+            self.get_token()
+            if self.session is None:
+                self.logger('~Global', '>> Insufficient login details provided.', False)
+                return False
+            if self.session.status[0] != 1:
+                # Something went wrong! Maybe the user entered the wrong details?!
+                self.logger('~Global', '>> Failed to get an authtoken.', False)
+                self.logger('~Global', '>> {0}'.format(self.session.status[1]), False)
+                return False
+            # If we get here all is well.
+            self.logger('~Global', '** Got an authtoken.', False)
+        return True
+    
+    def attempt_reconnect(self, vals=None, *args, **kwargs):
+        if self._connect_attempt_limit == 0:
+            return True
+        if self.flag.reconnect and self._connect_attempts < self._connect_attempt_limit:
+            return True
+        if self._connect_attempts >= self._connect_attempt_limit:
+            n = self._connect_attempts
+            self.logger('~Global', '>> Failed to connect to dAmn '+str(n)+' times. Giving up.', False)
+            self.logger('~Global', '>> Make sure you entered the login details correctly.', False)
+            self.logger('~Global', '>> If you already have, there may be a problem with dAmn.', False)
+        return False
+    
+    def make_connection(self, vals=None, *args, **kwargs):
+        # Actually try to connect to dAmn!
+        # This simply opens a socket connection. The rest takes more effort.
+        self.connect()
+        if not self.flag.connecting:
+            self.logger('~Global', '>> Failed to open a connection to dAmn.', False)
+            return False
+        # Send a handshake to the server!
+        self.handshake(vals if bool(vals) else {'Client':'Viper.ReconnectingClient'})
+        return True
         
     def pkt_login(self, data):
         Client.pkt_login(self, data)
         if data['e'] != 'ok':
-            self._connect_attemps = 0
             return
+        self._connect_attempts = 0
         for ns in self.autojoin:
             self.join(self.format_ns(ns))
     
