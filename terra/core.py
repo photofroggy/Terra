@@ -30,8 +30,8 @@ class Main:
         state = 'Development'
         series = 'Legacy'
         build = 120
-        stamp = '12022011-030818'
-        rstamp = 1297480098.29
+        stamp = '20022011-010913'
+        rstamp = 1298164153.7
         author = 'photofroggy'
     
     start = 0.0
