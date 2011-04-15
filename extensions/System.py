@@ -21,6 +21,7 @@ class Extension(extension.API):
         self.bind(self.c_uptime, 'command', ['uptime'], 'See how long the bot has been running for.')
         self.bind(self.c_commands, 'command', ['commands'], 'List the bot\'s commands!')
         self.bind(self.c_quit, 'command', [['quit', 'restart'], 'Owner'], 'Turn off the bot with this command.')
+        self.bind(self.c_eval, 'command', [['e', 'eval', 'exec'], 'Owner', None, self.cconfig.info.owner], 'Evalute some Python code!')
         
         self.bind(self.e_recv_msg, 'recv_msg')
         
@@ -160,6 +161,28 @@ class Extension(extension.API):
                     dAmn.trigger.replace('&', '&amp;')
                 )
             )
+    
+    def c_eval(self, cmd, dAmn):
+        """Evalute a Python expression or execute some code."""
+        func = eval if cmd.trigger.lower() in ('e', 'eval') else exec
+        eargs = cmd.arguments(1, True)
+        if len(eargs) > 0:
+            eargs = eargs.replace('&amp;', '&')
+            eargs = eargs.replace('&gt;', '>')
+            eargs = eargs.replace('&lt;', '<')
+            result = None
+            try:
+                result = func(eargs)
+            except Exception as e:
+                dAmn.say(cmd.ns, cmd.user + ': Code failed. Error returned "'+e.args[0]+'".')
+                excepted = str(type(e))[str(type(e)).find('\'')+1:-2]
+                return
+            if result != None:
+                dAmn.say(cmd.ns, '<bcode>{0}</bcode>'.format(str(result)))
+                return
+            dAmn.say(cmd.ns, '{0}: Code executed!'.format( cmd.user ))
+        else:
+            dAmn.say(cmd.ns, cmd.user + ': Use this command to execute Python code! Be careful though.')
     
     def getuptime(self):
         return misc_lib.strftimelen(time.time() - self.core.start)

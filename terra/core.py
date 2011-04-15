@@ -29,7 +29,7 @@ class Main:
         version = 2
         state = 'Development'
         series = 'Legacy'
-        build = 120
+        build = 121
         stamp = '20022011-010913'
         rstamp = 1298164153.7
         author = 'photofroggy'

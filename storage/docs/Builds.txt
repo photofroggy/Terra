@@ -3,6 +3,9 @@
     This tells you the date of each build, and perhaps some brief details.
     The format for build names is "Build [build number] ([date]-[time(24hr - HHMMSS)]) [Series name]
 
+    Build 121 () Legacy
+        * Newest pid written to ./storage/terra.pid.
+
     Build 120 (20022011-010913) Legacy
         * Improved on command priv checking.
         * rules.command.Binding now stores ``group`` and ``level``.

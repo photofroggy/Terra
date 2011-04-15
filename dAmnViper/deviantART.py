@@ -37,8 +37,7 @@ class Login:
         # Attempt to fetch the authoken!
         response = fetch_cookie(self, username, password, extras, client)
         # Process the response!
-        url = response.geturl()
-        if url == 'ConnectionError' or not 'loggedin=1' in url:
+        if not self.valid_login_url(response):
             self.handle(response)
             return
         response = fetch_channel(self, self.curl, client)
@@ -48,6 +47,16 @@ class Login:
             self.handle(response)
             return
         self.crop(username, response.data)
+    
+    def valid_login_url(self, response):
+        url = response.geturl()
+        if url == 'ConenctionError':
+            return False
+        if 'wrong-password' in url:
+            return False
+        if 'verify.deviantart.com' in url:
+            return False
+        return True
     
     def crop(self, username, data):
         match = re.search('"'+username+'", "([0-9a-f]{32})"', data, re.IGNORECASE)
@@ -60,6 +69,11 @@ class Login:
     def handle(self, response):
         """ Handle a login failure. """
         loc = response.geturl()
+        print(loc)
+        if 'verify.deviantart.com' in loc:
+            self.status = (7,
+                "This account has not yet been verified. To verify, please check the email you used to register the account (don't forget to search junk mail), and click the link the email deviantART sent you.")
+            return
         if 'wrong-password' in loc:
             self.status = (4, 'Incorrect username or password provided.')
             return
